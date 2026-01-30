@@ -1,9 +1,11 @@
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class DraggableMask : MonoBehaviour
 {
-    [SerializeField] MaskTypeData mask;
+    [SerializeField] MaskTypeData associatedMaskType;
+    public MaskTypeData MaskType => associatedMaskType;
     RectTransform rectTransform;
     Transform originalParent;
     Vector2 originalAnchoredPos;
