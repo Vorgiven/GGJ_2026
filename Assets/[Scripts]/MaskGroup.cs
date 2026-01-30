@@ -7,6 +7,7 @@ public class MaskGroup : DraggableMask
 {
     MaskGroupSlot currentSlot;
     [SerializeField] MaskGroupData maskGrpData;
+    public MaskGroupData MaskGroupData => maskGrpData;
 
     public void SetMashGroupSlot(MaskGroupSlot _newSlot)
     {
@@ -15,7 +16,7 @@ public class MaskGroup : DraggableMask
             currentSlot.SwapMaskDataGrp(null);
         }
         currentSlot = _newSlot;
-        currentSlot.SwapMaskDataGrp(maskGrpData);
+        currentSlot.SwapMaskDataGrp(this);
     }
     public override void BeginDrag()
     {

@@ -44,6 +44,7 @@ public class MaskDrawer : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+
         if(interactionManager.CurrentlyDraggingMask == null)
         {
             ToggleDrawer(true);
