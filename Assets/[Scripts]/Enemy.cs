@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
@@ -25,11 +26,17 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
         switch (enemyState)
         {
             case EnemyState.MOVE:
-                transform.position += (posMove - transform.position).normalized * moveSpeed * Time.deltaTime;
-                break;
+                if (Vector3.Distance(posMove, transform.position) > 1f)
+                    transform.position += (posMove - Vector3.right * transform.position.x).normalized * moveSpeed * Time.deltaTime;
+              
+                    break;
             case EnemyState.DONE:
-                transform.position += (posDone - transform.position).normalized * moveSpeed * Time.deltaTime;
-
+                if(Vector3.Distance(posDone,transform.position) > 1f)
+                    transform.position += (posDone - transform.position).normalized * moveSpeed * Time.deltaTime;
+                else
+                {
+                    gameObject.SetActive(false);
+                }
                 break;
             default:
                 break;
@@ -37,19 +44,28 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
     }
     public void EquipMask(SubMask mask)
     {
-        if (mask == null) return;
+        if (mask == null || maskEquipped!=null) return;
         maskEquipped = mask;
         if (maskEquipped.MaskType == maskType)
         {
-            Debug.Log("Match");
+            GameManager.instance.CorrectMask();
         }
         else
         {
-            Debug.Log("Not Match");
+            GameManager.instance.WrongMask();
         }
         ChangeState(EnemyState.DONE);
     }
 
+    // Update values
+    public void UpdateDonePos(Vector3 newPos)
+    {
+        posDone = newPos;
+    }
+    public void UpdateMovePos(Vector3 newPos)
+    {
+        posMove = newPos;
+    }
     #region STATES
     public void ChangeState(EnemyState newState)
     {
@@ -57,6 +73,11 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
     }
     public bool CompareState(EnemyState checkState) => enemyState == checkState;
     #endregion
+
+    //private void OnMouseOver()
+    //{
+    //    Debug.Log("Hover");
+    //}
 }
 public enum EnemyState
 {

@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[ClassInformation("Derived from DraggableMask", "SubMask will be used in GroupMask to set up",20,12)]
 public class SubMask : DraggableMask
 {
-    MaskTypeData associatedMaskType;
+    [SerializeField] private MaskTypeData associatedMaskType;
     public MaskTypeData MaskType => associatedMaskType;
     public void ChangeMask(MaskTypeData _newMask)
     {
