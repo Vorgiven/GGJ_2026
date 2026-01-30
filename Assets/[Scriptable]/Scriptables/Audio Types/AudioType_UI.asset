@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88e95fd74f098c74daa6d71abe59f2bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 8212f4c53f052424baef2a2480ea755e, type: 3}
   m_Name: AudioType_UI
   m_EditorClassIdentifier: 
-  audioTypeName: UI
-  audioPrefeb: {fileID: 7804054539463629203, guid: 4c035a1d34a3bd645b8918640d632290,
-    type: 3}
-  audioMixerGroup: {fileID: 2029366656010947277, guid: bb9c73206141cef4c87083f9fd7c0434,
-    type: 2}
+  audioTypeName: MUSIC
+  audioPrefeb: {fileID: 9175782412936127627, guid: 61711819c55c72a4abcfc39c76e073e7, type: 3}
+  audioMixerGroup: {fileID: -548871803281167214, guid: bb9c73206141cef4c87083f9fd7c0434, type: 2}
