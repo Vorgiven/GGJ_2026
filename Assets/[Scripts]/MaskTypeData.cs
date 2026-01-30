@@ -6,12 +6,16 @@ using UnityEngine;
 public class MaskTypeData : ScriptableObject
 {
     public Sprite maskSprite;
+    public Color maskColor;
     public MaskType maskType;
     public enum MaskType
     {
-        Animal,
-        Hospital,
-        Horror
+        Cat,
+        Dog,
+        Surgical,
+        Respiratory,
+        Zombie,
+        Vampire
     }
 
 }

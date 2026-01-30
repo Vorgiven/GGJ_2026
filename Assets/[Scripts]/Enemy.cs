@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
 {
     [SerializeField] private MaskTypeData maskType;
-    [SerializeField] private DraggableMask maskEquipped;
+    [SerializeField] private SubMask maskEquipped;
     private EnemyState enemyState = EnemyState.MOVE;
     [Header("Stats")]
     [SerializeField] private float moveSpeed = 2f;
@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
     private Vector3 posDone = new Vector3(-6,6,0);
 
     [Header("Test")]
-    public DraggableMask testMask;
+    public SubMask testMask;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
                 break;
         }
     }
-    public void EquipMask(DraggableMask mask)
+    public void EquipMask(SubMask mask)
     {
         if (mask == null) return;
         maskEquipped = mask;
