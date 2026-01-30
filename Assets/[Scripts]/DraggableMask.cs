@@ -22,7 +22,6 @@ public class DraggableMask : MonoBehaviour
     {
         KillTween();
 
-        originalParent = transform.parent;
         transform.SetParent(canvas.transform, true);
     }
 

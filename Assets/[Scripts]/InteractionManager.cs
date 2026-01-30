@@ -29,27 +29,29 @@ public class InteractionManager : MonoBehaviour
         if (!EventSystem.current.IsPointerOverGameObject())
             return;
 
+        // Create pointer event at mouse position
         var data = new PointerEventData(EventSystem.current)
         {
             position = Input.mousePosition
         };
 
+        // Raycast
         var results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(data, results);
 
-        foreach (var r in results)
-        {
-            var mask = r.gameObject.GetComponent<DraggableMask>();
-            if (!mask) continue;
+        if (results.Count == 0) return; // nothing hit
 
-            current = mask;
-            current.BeginDrag(canvas);
+        // Take the first hit
+        var firstHit = results[0];
+        var mask = firstHit.gameObject.GetComponent<DraggableMask>();
+        if (mask == null) return;
 
-            Vector2 pos = GetCanvasCursorPos();
-            current.TweenTo(pos, 0.15f);
-            break;
-        }
+        current = mask;
+        current.BeginDrag(canvas);
+
+        Vector2 pos = GetCanvasCursorPos();
     }
+
 
     void Drag()
     {
