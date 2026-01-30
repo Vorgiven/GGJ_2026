@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b9f003b12be3340aa96da2c3132699, type: 3}
   m_Name: Horror
   m_EditorClassIdentifier: 
-  MaskA: {fileID: 11400000, guid: e7443f59d15a9fb40984984084f1be26, type: 2}
-  MaskB: {fileID: 11400000, guid: 2d92e681c58dc7d44b7d63540c769f43, type: 2}
+  MaskA: {fileID: 11400000, guid: b90e4a449f2871a45beebb535500064d, type: 2}
+  MaskB: {fileID: 11400000, guid: 8ced2c33f319c3844bf0adc2c4656a62, type: 2}

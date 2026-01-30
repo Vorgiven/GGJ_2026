@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Hospital_Respiratory
   m_EditorClassIdentifier: 
   maskSprite: {fileID: 0}
-  maskColor: {r: 0.4433962, g: 0, b: 0.12149359, a: 1}
-  maskType: 1
+  maskColor: {r: 0, g: 0.25196218, b: 0.38679248, a: 1}
+  maskType: 3

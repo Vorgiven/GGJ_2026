@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b9f003b12be3340aa96da2c3132699, type: 3}
   m_Name: Hospital
   m_EditorClassIdentifier: 
-  MaskA: {fileID: 11400000, guid: e7443f59d15a9fb40984984084f1be26, type: 2}
-  MaskB: {fileID: 11400000, guid: 2d92e681c58dc7d44b7d63540c769f43, type: 2}
+  MaskA: {fileID: 11400000, guid: aea0515afd4d07341bb4675b0f240424, type: 2}
+  MaskB: {fileID: 11400000, guid: bba6c960d56c515499a94b5aa3b3e0bb, type: 2}

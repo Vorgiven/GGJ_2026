@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Horror_Vampire
   m_EditorClassIdentifier: 
   maskSprite: {fileID: 0}
-  maskColor: {r: 0.6981132, g: 0.047780298, b: 0, a: 1}
-  maskType: 0
+  maskColor: {r: 0, g: 0.4056604, b: 0.064702496, a: 1}
+  maskType: 5
