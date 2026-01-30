@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8212f4c53f052424baef2a2480ea755e, type: 3}
-  m_Name: AudioType_MUSIC 1
+  m_Name: AudioType_MUSIC
   m_EditorClassIdentifier: 
   audioTypeName: MUSIC
   audioPrefeb: {fileID: 9175782412936127627, guid: 61711819c55c72a4abcfc39c76e073e7, type: 3}
