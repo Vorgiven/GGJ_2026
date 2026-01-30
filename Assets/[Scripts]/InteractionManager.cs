@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class InteractionManager : MonoBehaviour
 {
-    DraggableMask currentDraggableMask;
+    DraggableMask current;
     Canvas canvas;
 
     void Start()
@@ -16,10 +17,10 @@ public class InteractionManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
             TryPickUp();
 
-        if (Input.GetMouseButton(0) && currentDraggableMask)
+        if (Input.GetMouseButton(0) && current)
             Drag();
 
-        if (Input.GetMouseButtonUp(0) && currentDraggableMask)
+        if (Input.GetMouseButtonUp(0) && current)
             Release();
     }
 
@@ -28,51 +29,47 @@ public class InteractionManager : MonoBehaviour
         if (!EventSystem.current.IsPointerOverGameObject())
             return;
 
-        PointerEventData pointerData = new PointerEventData(EventSystem.current)
+        var data = new PointerEventData(EventSystem.current)
         {
             position = Input.mousePosition
         };
 
-        var results = new System.Collections.Generic.List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointerData, results);
+        var results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(data, results);
 
-        foreach (var result in results)
+        foreach (var r in results)
         {
-            DraggableMask mask = result.gameObject.GetComponent<DraggableMask>();
-            if (mask)
-            {
-                currentDraggableMask = mask;
+            var mask = r.gameObject.GetComponent<DraggableMask>();
+            if (!mask) continue;
 
-                Vector2 cursorPos;
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                    canvas.transform as RectTransform,
-                    Input.mousePosition,
-                    canvas.worldCamera,
-                    out cursorPos
-                );
+            current = mask;
+            current.BeginDrag(canvas);
 
-                currentDraggableMask.TweenTo(cursorPos, 0.15f);
-                break;
-            }
+            Vector2 pos = GetCanvasCursorPos();
+            current.TweenTo(pos, 0.15f);
+            break;
         }
     }
 
     void Drag()
     {
-        Vector2 cursorPos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            canvas.transform as RectTransform,
-            Input.mousePosition,
-            canvas.worldCamera,
-            out cursorPos
-        );
-
-        currentDraggableMask.FollowCursor(cursorPos);
+        current.FollowCursor(GetCanvasCursorPos());
     }
 
     void Release()
     {
-        currentDraggableMask.ResetPosition(0.25f);
-        currentDraggableMask = null;
+        current.EndDrag(0.25f);
+        current = null;
+    }
+
+    Vector2 GetCanvasCursorPos()
+    {
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvas.transform as RectTransform,
+            Input.mousePosition,
+            canvas.worldCamera,
+            out Vector2 pos
+        );
+        return pos;
     }
 }

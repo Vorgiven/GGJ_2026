@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449621adb38cf9a45a8d8b22206d11f8, type: 3}
   m_Name: Cat mask
   m_EditorClassIdentifier: 
+  maskSprite: {fileID: 0}
+  maskType: 0
