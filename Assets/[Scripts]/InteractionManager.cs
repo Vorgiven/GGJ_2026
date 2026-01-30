@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 
 public class InteractionManager : MonoBehaviour
 {
-    DraggableMask current;
+    DraggableMask currentDragingMask;
+    Enemy currentHoveredEnemy;
     Canvas canvas;
 
     void Start()
@@ -14,58 +16,88 @@ public class InteractionManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        DetectEnemyHover();
+        if (Input.GetMouseButtonDown(0) && !currentDragingMask)
+        {
             TryPickUp();
-
-        if (Input.GetMouseButton(0) && current)
+        }
+        else if (Input.GetMouseButton(0) && currentDragingMask)
+        {
             Drag();
-
-        if (Input.GetMouseButtonUp(0) && current)
+        }
+        else if (Input.GetMouseButtonUp(0) && currentDragingMask)
+        {
             Release();
+        }
+
+        
     }
 
     void TryPickUp()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
-            return;
-
-        var data = new PointerEventData(EventSystem.current)
+        if (EventSystem.current.IsPointerOverGameObject())
         {
-            position = Input.mousePosition
-        };
+            var data = new PointerEventData(EventSystem.current)
+            {
+                position = Input.mousePosition
+            };
 
-        var results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(data, results);
+            var results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(data, results);
 
-        foreach (var r in results)
+            if (results.Count > 0)
+            {
+                var mask = results[0].gameObject.GetComponent<DraggableMask>();
+                if (mask)
+                {
+                    currentDragingMask = mask;
+                    currentDragingMask.BeginDrag();
+                    Drag(); // snap to cursor immediately
+                }
+            }
+        }
+
+    }
+    void DetectEnemyHover()
+    {
+        Camera cam = Camera.main;
+        if (!cam) return;
+
+        Vector2 worldPos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+
+        if (hit.collider != null)
         {
-            var mask = r.gameObject.GetComponent<DraggableMask>();
-            if (!mask) continue;
-
-            current = mask;
-            current.BeginDrag(canvas);
-
-            Vector2 pos = GetCanvasCursorPos();
-            current.TweenTo(pos, 0.15f);
-            break;
+            Enemy enemyScript = hit.collider.GetComponent<Enemy>();
+            if (enemyScript)
+            {
+                currentHoveredEnemy = enemyScript;
+            }
+        }
+        else
+        {
+            currentHoveredEnemy = null;
         }
     }
 
+
     void Drag()
     {
-        current.FollowCursor(GetCanvasCursorPos());
+        Vector2 localPos = GetParentLocalCursorPos(currentDragingMask.transform.parent as RectTransform);
+        currentDragingMask.FollowCursor(localPos);
     }
 
     void Release()
     {
-        current.EndDrag(0.25f);
-        current = null;
+        currentDragingMask.EndDrag(0.25f);
+        currentDragingMask = null;
     }
 
-    Vector2 GetCanvasCursorPos()
+    Vector2 GetParentLocalCursorPos(RectTransform parent)
     {
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            canvas.transform as RectTransform,
+            parent,
             Input.mousePosition,
             canvas.worldCamera,
             out Vector2 pos
