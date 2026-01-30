@@ -1,32 +1,44 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DraggableMask : MonoBehaviour
 {
-    [SerializeField] MaskTypeData associatedMaskType;
-    public MaskTypeData MaskType => associatedMaskType;
+    [SerializeField] Image image;
+    public Image ImageComponent => image;
 
     RectTransform rectTransform;
-    Vector2 originalAnchoredPos;
     Tween activeTween;
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        originalAnchoredPos = rectTransform.anchoredPosition;
+
+        // Force center anchoring so (0,0) is always visual center
+        rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        rectTransform.pivot = new Vector2(0.5f, 0.5f);
     }
 
-    public void BeginDrag()
+    public virtual void BeginDrag()
     {
+        image.raycastTarget = false;
         KillTween();
     }
 
-    public void EndDrag(float duration)
+    public void EndDrag(float duration, RectTransform newParent = null)
     {
         KillTween();
+        image.raycastTarget = true;
 
+        if (newParent != null)
+        {
+            rectTransform.SetParent(newParent, true);
+        }
+
+        // Always return to visual center
         activeTween = rectTransform
-            .DOAnchorPos(originalAnchoredPos, duration)
+            .DOAnchorPos(Vector2.zero, duration)
             .SetEase(Ease.OutQuad);
     }
 
@@ -38,6 +50,9 @@ public class DraggableMask : MonoBehaviour
     void KillTween()
     {
         if (activeTween != null && activeTween.IsActive())
+        {
             activeTween.Kill();
+            activeTween = null;
+        }
     }
 }

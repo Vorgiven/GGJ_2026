@@ -5,10 +5,32 @@ using UnityEditor.Experimental.GraphView;
 
 public class InteractionManager : MonoBehaviour
 {
-    DraggableMask currentDragingMask;
-    Enemy currentHoveredEnemy;
-    Canvas canvas;
+    [SerializeField] MaskDrawer maskDrawer;
+    public MaskDrawer MaskDrawer => maskDrawer;
 
+    DraggableMask currentlyDraggingMask;
+    public DraggableMask CurrentlyDraggingMask => currentlyDraggingMask;
+
+    SubMask equipedSubMask;
+    MaskGroup equipeedMaskGrp;
+
+    Enemy currentHoveredEnemy;
+    MaskGroupSlot currentlyHoveredGrpSlot;
+
+    Canvas canvas;
+    public static InteractionManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(Instance);
+        }
+    }
     void Start()
     {
         canvas = FindObjectOfType<Canvas>();
@@ -17,20 +39,54 @@ public class InteractionManager : MonoBehaviour
     void Update()
     {
         DetectEnemyHover();
-        if (Input.GetMouseButtonDown(0) && !currentDragingMask)
+
+        if (Input.GetMouseButtonDown(0) && !currentlyDraggingMask)
         {
             TryPickUp();
         }
-        else if (Input.GetMouseButton(0) && currentDragingMask)
+        else if (Input.GetMouseButton(0) && currentlyDraggingMask)
         {
             Drag();
         }
-        else if (Input.GetMouseButtonUp(0) && currentDragingMask)
+        else if (Input.GetMouseButtonUp(0) && currentlyDraggingMask)
         {
             Release();
         }
-
         
+    }
+    public void OnHoverGrpSlot(MaskGroupSlot _grpSlot)
+    {
+        currentlyHoveredGrpSlot = _grpSlot;
+    }
+    void DetectMaskGroup()
+    {
+        // Default state every frame
+        currentlyHoveredGrpSlot = null;
+
+        if (!EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        var data = new PointerEventData(EventSystem.current)
+        {
+            position = Input.mousePosition
+        };
+
+        var results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(data, results);
+
+        if (results.Count == 0)
+            return;
+
+        // Find the first MaskGroupSlot in the hit chain
+        foreach (var r in results)
+        {
+            var slot = r.gameObject.GetComponent<MaskGroupSlot>();
+            if (slot)
+            {
+                currentlyHoveredGrpSlot = slot;
+                break;
+            }
+        }
     }
 
     void TryPickUp()
@@ -50,8 +106,16 @@ public class InteractionManager : MonoBehaviour
                 var mask = results[0].gameObject.GetComponent<DraggableMask>();
                 if (mask)
                 {
-                    currentDragingMask = mask;
-                    currentDragingMask.BeginDrag();
+                    currentlyDraggingMask = mask;
+                    if (currentlyDraggingMask is SubMask subMask)
+                    {
+                        equipedSubMask = subMask;
+                    }
+                    else if (currentlyDraggingMask is MaskGroup maskGrp)
+                    {
+                        equipeedMaskGrp = maskGrp;
+                    }
+                    currentlyDraggingMask.BeginDrag();
                     Drag(); // snap to cursor immediately
                 }
             }
@@ -84,14 +148,38 @@ public class InteractionManager : MonoBehaviour
 
     void Drag()
     {
-        Vector2 localPos = GetParentLocalCursorPos(currentDragingMask.transform.parent as RectTransform);
-        currentDragingMask.FollowCursor(localPos);
+        Vector2 localPos = GetParentLocalCursorPos(currentlyDraggingMask.transform.parent as RectTransform);
+        currentlyDraggingMask.FollowCursor(localPos);
+
+        if (currentlyDraggingMask is MaskGroup maskGroup)
+        {
+            DetectMaskGroup();
+        }
     }
 
     void Release()
     {
-        currentDragingMask.EndDrag(0.25f);
-        currentDragingMask = null;
+        if(equipedSubMask)
+        {
+            equipedSubMask.EndDrag(0.25f);
+            equipedSubMask = null;
+        }
+        if (equipeedMaskGrp)
+        {
+            if (currentlyHoveredGrpSlot)
+            {
+                equipeedMaskGrp.SetMashGroupSlot(currentlyHoveredGrpSlot);
+                equipeedMaskGrp.EndDrag(0.25f, currentlyHoveredGrpSlot.RectTransform);
+                maskDrawer.ToggleDrawer(false);
+                currentlyHoveredGrpSlot = null;
+            }
+            else
+            {
+                equipeedMaskGrp.EndDrag(0.25f);
+            }
+            equipeedMaskGrp = null;
+        }
+        currentlyDraggingMask = null;
     }
 
     Vector2 GetParentLocalCursorPos(RectTransform parent)
