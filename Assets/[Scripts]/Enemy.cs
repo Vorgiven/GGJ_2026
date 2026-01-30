@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    //[SerializeField] private MaskTypeData maskType;
-    //[SerializeField] private Mask maskEquipped;
+    [SerializeField] private MaskTypeData maskType;
+    [SerializeField] private DraggableMask maskEquipped;
 
-    //public void EquipMask(Mask mask)
-    //{
-    //    maskEquipped = mask;
-    //}
+    public void EquipMask(DraggableMask mask)
+    {
+        maskEquipped = mask;
+        //if(mask.maskType == maskType)
+        //{
+        //    Debug.Log("Match");
+        //}
+        //else
+        //{
+        //    Debug.Log("Not Match");
+        //}
+    }
 }
