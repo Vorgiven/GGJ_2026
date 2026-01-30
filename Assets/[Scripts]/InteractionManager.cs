@@ -20,6 +20,10 @@ public class InteractionManager : MonoBehaviour
     Canvas canvas;
     public static InteractionManager Instance;
 
+    [Header("Feedback")]
+    [SerializeField] FeedbackEventData e_PickupMask;
+    [SerializeField] FeedbackEventData e_DropMask;
+
     private void Awake()
     {
         if (Instance == null)
@@ -117,6 +121,7 @@ public class InteractionManager : MonoBehaviour
                     }
                     currentlyDraggingMask.BeginDrag();
                     Drag(); // snap to cursor immediately
+                    e_PickupMask?.InvokeEvent();
                 }
             }
         }
@@ -188,6 +193,7 @@ public class InteractionManager : MonoBehaviour
             }
             equipeedMaskGrp = null;
         }
+        e_DropMask?.InvokeEvent();
         currentlyDraggingMask = null;
     }
 
