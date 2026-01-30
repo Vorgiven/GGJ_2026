@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 
 public class MaskDrawer : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
-    [SerializeField] InteractionManager interactionManager;
     RectTransform rectTransform;
     Tween DrawerTween;
     void Awake()
@@ -45,7 +44,7 @@ public class MaskDrawer : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
 
-        if(interactionManager.CurrentlyDraggingMask == null)
+        if(InteractionManager.Instance.CurrentlyDraggingMask == null)
         {
             ToggleDrawer(true);
         }
@@ -54,7 +53,7 @@ public class MaskDrawer : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (interactionManager.CurrentlyDraggingMask is not MaskGroup)
+        if (InteractionManager.Instance.CurrentlyDraggingMask is not MaskGroup)
         {
             ToggleDrawer(false);
         }
