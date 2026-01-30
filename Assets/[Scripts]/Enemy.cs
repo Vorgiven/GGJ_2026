@@ -11,9 +11,17 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
     [SerializeField] private float moveSpeed = 2f;
 
     private Vector3 posMove= new Vector3(-3, 0, 0);
-    private Vector3 posDone = new Vector3(4,5,0);
+    private Vector3 posDone = new Vector3(-6,6,0);
+
+    [Header("Test")]
+    public DraggableMask testMask;
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            EquipMask(testMask);
+        }
+
         switch (enemyState)
         {
             case EnemyState.MOVE:
