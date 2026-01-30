@@ -17,5 +17,8 @@ public class MaskGroupSlot : MonoBehaviour
     {
         CurrentlyEquippedMaskGrp = GetComponentInChildren<MaskGroup>();
     }
-    
+    public void RecallMask()
+    {
+        CurrentlyEquippedMaskGrp.EndDrag(0.25f, rectTransform);
+    }
 }
