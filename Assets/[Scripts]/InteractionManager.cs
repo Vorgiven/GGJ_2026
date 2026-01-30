@@ -161,6 +161,10 @@ public class InteractionManager : MonoBehaviour
     {
         if(equipedSubMask)
         {
+            if(currentHoveredEnemy)
+            {
+                currentHoveredEnemy.EquipMask(equipedSubMask);
+            }
             equipedSubMask.EndDrag(0.25f);
             equipedSubMask = null;
         }
