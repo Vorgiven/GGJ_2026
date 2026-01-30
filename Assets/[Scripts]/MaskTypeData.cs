@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable/Mask type")]
+[CreateAssetMenu(menuName = "Scriptable/Mask type",fileName ="MaskType_")]
 public class MaskTypeData : ScriptableObject
 {
     public Sprite maskSprite;
