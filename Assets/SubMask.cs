@@ -9,6 +9,15 @@ public class SubMask : DraggableMask
     public void ChangeMask(MaskTypeData _newMask)
     {
         associatedMaskType = _newMask;
-        ImageComponent.color = _newMask.maskColor;
+        if (_newMask.maskSprite)
+        {
+            ImageComponent.color = Color.white;
+            ImageComponent.sprite = _newMask.maskSprite;
+        }
+        else
+        {
+            ImageComponent.color = _newMask.maskColor;
+        }
+            
     }
 }
