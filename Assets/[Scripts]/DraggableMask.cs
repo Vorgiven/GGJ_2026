@@ -1,43 +1,58 @@
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 
 public class DraggableMask : MonoBehaviour
 {
+    [SerializeField] MaskTypeData mask;
     RectTransform rectTransform;
+    Transform originalParent;
     Vector2 originalAnchoredPos;
     Tween activeTween;
-
-    [SerializeField] Mask maskScriptable;
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        originalParent = transform.parent;
         originalAnchoredPos = rectTransform.anchoredPosition;
     }
 
-    public void KillTween()
+    public void BeginDrag(Canvas canvas)
+    {
+        KillTween();
+
+        originalParent = transform.parent;
+        transform.SetParent(canvas.transform, true);
+    }
+
+
+    public void EndDrag(float duration)
+    {
+        KillTween();
+
+        transform.SetParent(originalParent, true);
+
+        rectTransform
+            .DOAnchorPos(originalAnchoredPos, duration)
+            .SetEase(Ease.OutQuad);
+    }
+
+
+    public void FollowCursor(Vector2 canvasPos)
+    {
+        rectTransform.anchoredPosition = canvasPos;
+    }
+
+    public void TweenTo(Vector2 canvasPos, float duration)
+    {
+        KillTween();
+        activeTween = rectTransform
+            .DOAnchorPos(canvasPos, duration)
+            .SetEase(Ease.OutQuad);
+    }
+
+    void KillTween()
     {
         if (activeTween != null && activeTween.IsActive())
             activeTween.Kill();
     }
-
-    public void TweenTo(Vector2 target, float duration)
-    {
-        KillTween();
-        activeTween = rectTransform.DOAnchorPos(target, duration).SetEase(Ease.OutQuad);
-    }
-
-    public void ResetPosition(float duration)
-    {
-        KillTween();
-        activeTween = rectTransform.DOAnchorPos(originalAnchoredPos, duration).SetEase(Ease.OutQuad);
-    }
-
-    public void FollowCursor(Vector2 target)
-    {
-        rectTransform.anchoredPosition = target;
-    }
-
-    public Mask Mask => maskScriptable;
 }
