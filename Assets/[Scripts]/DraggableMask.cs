@@ -1,55 +1,38 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DraggableMask : MonoBehaviour
 {
     [SerializeField] MaskTypeData associatedMaskType;
     public MaskTypeData MaskType => associatedMaskType;
+
     RectTransform rectTransform;
-    Transform originalParent;
     Vector2 originalAnchoredPos;
     Tween activeTween;
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        originalParent = transform.parent;
         originalAnchoredPos = rectTransform.anchoredPosition;
     }
 
-    public void BeginDrag(Canvas canvas)
+    public void BeginDrag()
     {
         KillTween();
-
-        originalParent = transform.parent;
-        transform.SetParent(canvas.transform, true);
     }
-
 
     public void EndDrag(float duration)
     {
         KillTween();
 
-        transform.SetParent(originalParent, true);
-
-        rectTransform
+        activeTween = rectTransform
             .DOAnchorPos(originalAnchoredPos, duration)
             .SetEase(Ease.OutQuad);
     }
 
-
-    public void FollowCursor(Vector2 canvasPos)
+    public void FollowCursor(Vector2 parentLocalPos)
     {
-        rectTransform.anchoredPosition = canvasPos;
-    }
-
-    public void TweenTo(Vector2 canvasPos, float duration)
-    {
-        KillTween();
-        activeTween = rectTransform
-            .DOAnchorPos(canvasPos, duration)
-            .SetEase(Ease.OutQuad);
+        rectTransform.anchoredPosition = parentLocalPos;
     }
 
     void KillTween()
