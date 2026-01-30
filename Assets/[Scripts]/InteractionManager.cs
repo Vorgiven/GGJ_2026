@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class InteractionManager : MonoBehaviour
 {
-    DraggableMask current;
+    DraggableMask currentDragingMask;
     Canvas canvas;
 
     void Start()
@@ -17,10 +17,10 @@ public class InteractionManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
             TryPickUp();
 
-        if (Input.GetMouseButton(0) && current)
+        if (Input.GetMouseButton(0) && currentDragingMask)
             Drag();
 
-        if (Input.GetMouseButtonUp(0) && current)
+        if (Input.GetMouseButtonUp(0) && currentDragingMask)
             Release();
     }
 
@@ -29,45 +29,41 @@ public class InteractionManager : MonoBehaviour
         if (!EventSystem.current.IsPointerOverGameObject())
             return;
 
-        // Create pointer event at mouse position
         var data = new PointerEventData(EventSystem.current)
         {
             position = Input.mousePosition
         };
 
-        // Raycast
         var results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(data, results);
 
-        if (results.Count == 0) return; // nothing hit
+        if (results.Count == 0) return;
 
-        // Take the first hit
         var firstHit = results[0];
         var mask = firstHit.gameObject.GetComponent<DraggableMask>();
         if (mask == null) return;
 
-        current = mask;
-        current.BeginDrag(canvas);
-
-        Vector2 pos = GetCanvasCursorPos();
+        currentDragingMask = mask;
+        currentDragingMask.BeginDrag();
+        Drag(); // snap to cursor immediately
     }
-
 
     void Drag()
     {
-        current.FollowCursor(GetCanvasCursorPos());
+        Vector2 localPos = GetParentLocalCursorPos(currentDragingMask.transform.parent as RectTransform);
+        currentDragingMask.FollowCursor(localPos);
     }
 
     void Release()
     {
-        current.EndDrag(0.25f);
-        current = null;
+        currentDragingMask.EndDrag(0.25f);
+        currentDragingMask = null;
     }
 
-    Vector2 GetCanvasCursorPos()
+    Vector2 GetParentLocalCursorPos(RectTransform parent)
     {
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            canvas.transform as RectTransform,
+            parent,
             Input.mousePosition,
             canvas.worldCamera,
             out Vector2 pos
