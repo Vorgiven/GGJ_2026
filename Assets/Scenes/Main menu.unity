@@ -311,7 +311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5132501134048394945, guid: 6eec9228a2d7ea14cb38da58f545a8d0, type: 3}
       propertyPath: feedbackDatas.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5132501134048394945, guid: 6eec9228a2d7ea14cb38da58f545a8d0, type: 3}
       propertyPath: feedbackDatas.Array.data[0]
@@ -329,6 +329,10 @@ PrefabInstance:
       propertyPath: feedbackDatas.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 541248fba038a1a44811f512b81d02c8, type: 2}
+    - target: {fileID: 5132501134048394945, guid: 6eec9228a2d7ea14cb38da58f545a8d0, type: 3}
+      propertyPath: feedbackDatas.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 54ddedc9686b23240be24171bea99530, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1546,6 +1550,7 @@ MonoBehaviour:
   NextBtn: {fileID: 1922592468}
   e_curtainOpen: {fileID: 11400000, guid: 056c88631e947af478f4faef35792ac9, type: 2}
   e_curtainClose: {fileID: 11400000, guid: 54badb39c4508114884e198ced7630fb, type: 2}
+  e_InstructionChangeSFX: {fileID: 11400000, guid: 54ddedc9686b23240be24171bea99530, type: 2}
 --- !u!1 &876261461
 GameObject:
   m_ObjectHideFlags: 0
@@ -2010,7 +2015,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 230}
+  m_AnchoredPosition: {x: 0, y: 175}
   m_SizeDelta: {x: 575, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1098297921

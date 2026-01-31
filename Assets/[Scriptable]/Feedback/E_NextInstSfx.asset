@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feedbackName: 
   parented: 1
-  audioType: {fileID: 0}
+  audioType: {fileID: 11400000, guid: 57a84232237b6f54f820a299f09a73fd, type: 2}
   enableRandomPitch: 1
   minPitch: 1
   maxPitch: 1.15
   audios:
   - clip: {fileID: 8300000, guid: c77d5c294f2bdcd4c9fa8f7cb570a714, type: 3}
-    volume: 1
+    volume: 0.5
   effects: []
