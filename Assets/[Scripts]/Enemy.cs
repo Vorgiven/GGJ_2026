@@ -25,11 +25,12 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
         switch (enemyState)
         {
             case EnemyState.MOVE:
-                transform.position += (posMove - transform.position).normalized * moveSpeed * Time.deltaTime;
+                if (Vector3.Distance(posMove, transform.position) > 1f)
+                    transform.position += (posMove - Vector3.right * transform.position.x).normalized * moveSpeed * Time.deltaTime;
                 break;
             case EnemyState.DONE:
-                transform.position += (posDone - transform.position).normalized * moveSpeed * Time.deltaTime;
-
+                if(Vector3.Distance(posDone,transform.position) > 1f)
+                    transform.position += (posDone - transform.position).normalized * moveSpeed * Time.deltaTime;
                 break;
             default:
                 break;
@@ -50,6 +51,15 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
         ChangeState(EnemyState.DONE);
     }
 
+    // Update values
+    public void UpdateDonePos(Vector3 newPos)
+    {
+        posDone = newPos;
+    }
+    public void UpdateMovePos(Vector3 newPos)
+    {
+        posMove = newPos;
+    }
     #region STATES
     public void ChangeState(EnemyState newState)
     {
