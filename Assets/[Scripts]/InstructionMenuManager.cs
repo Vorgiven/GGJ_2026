@@ -34,6 +34,7 @@ public class InstructionMenuManager : MonoBehaviour
                 instructionRect.gameObject.SetActive(false);
             }
             ToggleIntructions(0);
+            InstructionList[0].anchoredPosition = new Vector2(750, InstructionList[0].anchoredPosition.y);
             instructionGrp.interactable = false;
             instructionGrp.alpha = 0;
             UIImageVideoPlayer.Instance.Play(CLoseCUrtain, () => {
@@ -98,7 +99,7 @@ public class InstructionMenuManager : MonoBehaviour
         {
             PrevBtn.SetActive(false);
         }
-        InstructionList[index].gameObject.SetActive(true);
+        InstructionList[currentINdex].gameObject.SetActive(true);
     }
 
 }

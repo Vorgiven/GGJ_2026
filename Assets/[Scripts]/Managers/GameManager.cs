@@ -14,9 +14,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private BaseValueInt healthValue = new BaseValueInt(100);
     [SerializeField] private int score = 0;
+    public int Score => score;
     [SerializeField] private int currentCombo = 0;
     [SerializeField] private int comboToActivate = 3;
     [SerializeField] private int highestCombo = 0;
+    public int HightestCombo => highestCombo;
     [SerializeField] private TimerCheck timerCombo;
     [Header("UI")]
     [SerializeField] private RectTransform uiHealth;
