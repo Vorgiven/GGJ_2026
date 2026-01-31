@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
 {
@@ -12,6 +13,10 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
     private EnemyState enemyState = EnemyState.MOVE;
     [Header("Stats")]
     [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private TimerCheck frustrationTimer;
+    [Header("Reaction")]
+    [SerializeField] private Image imgReaction;
+    [SerializeField] private Image imgFrustrationTimer;
 
     private Vector3 posMove= new Vector3(-3, 0, 0);
     private Vector3 posDone = new Vector3(-6,6,0);
@@ -25,14 +30,34 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
         switch (enemyState)
         {
             case EnemyState.MOVE:
-                if (Vector3.Distance(posMove, transform.position) > 2f)
+                if (transform.position.x > posMove.x)
                 {
                     transform.position += (posMove - Vector3.right * transform.position.x).normalized * moveSpeed * Time.deltaTime;
                     animator.SetBool("Move",true);
                 }
                 else
                 {
+                    ChangeState(EnemyState.IDLE);
+                }
+                break;
+            case EnemyState.IDLE:
+                animator.SetBool("Move", false);
+                imgFrustrationTimer.fillAmount = 1-frustrationTimer.GetPercentage();
+                if (frustrationTimer.UpdateTimer())
+                {
+                    ChangeState(EnemyState.ANGRY);
+                }
+                break;
+            case EnemyState.ANGRY:
+                if (Vector3.Distance(new Vector3(0, -8, 0), transform.position) > 2f)
+                {
+                    transform.position += (new Vector3(0,-8,0) - transform.position).normalized * moveSpeed * Time.deltaTime;
+                    animator.SetBool("Move", true);
+                }
+                else
+                {
                     animator.SetBool("Move", false);
+                    gameObject.SetActive(false);
                 }
                 break;
             case EnemyState.DONE:
@@ -86,6 +111,22 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
     public void ChangeState(EnemyState newState)
     {
         enemyState = newState;
+        switch (newState)
+        {
+            case EnemyState.MOVE:
+                break;
+            case EnemyState.IDLE:
+                imgFrustrationTimer.gameObject.SetActive(true);
+                break;
+            case EnemyState.ANGRY:
+                imgReaction.gameObject.SetActive(true);
+                break;
+            case EnemyState.DONE:
+                imgFrustrationTimer.gameObject.SetActive(false);
+                break;
+            default:
+                break;
+        }
     }
     public bool CompareState(EnemyState checkState) => enemyState == checkState;
     #endregion
@@ -98,5 +139,7 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
 public enum EnemyState
 {
     MOVE,
-    DONE
+    IDLE,
+    ANGRY,
+    DONE,
 }

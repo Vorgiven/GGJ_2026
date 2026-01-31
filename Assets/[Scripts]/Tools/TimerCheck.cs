@@ -16,7 +16,7 @@ public class TimerCheck
     }
     // Check timer if condition in parameter is true
     // This should be call in update
-    public bool CheckTimer(bool condition = true)
+    public bool UpdateTimer(bool condition = true)
     {
         if (condition)
         {

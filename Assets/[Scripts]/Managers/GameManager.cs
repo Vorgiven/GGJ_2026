@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if(timerCombo.CheckTimer(currentCombo>0))
+        if(timerCombo.UpdateTimer(currentCombo>0))
         {
             ResetCombo();
         }
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
 public class MasskGroupUnlockInfo
 {
     public MaskGroupData maskGroupData;
-    public GameObject maskGroupDrawer;
+    public MaskGroup maskGroupDrawer;
     public GameObject masGroupkSprite;
     [SerializeField]private bool unlock = true;
 
@@ -147,6 +147,8 @@ public class MasskGroupUnlockInfo
     {
         unlock = true;
         maskGroupDrawer.gameObject.SetActive(true);
+        maskGroupDrawer.transform.parent.GetComponent<MaskGroupSlot>().CurrentlyEquippedMaskGrp = maskGroupDrawer;
+             
         masGroupkSprite.gameObject.SetActive(true);
     }
     public void Lock()
