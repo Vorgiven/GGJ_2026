@@ -29,8 +29,11 @@ public class UIImageVideoPlayer : MonoBehaviour
 
         Instance = this;
     }
-
-    public void Play(VideoData videoData)
+    public void SetImageTarget(Image _newImage)
+    {
+        targetImage = _newImage;
+    }
+    public void Play(VideoData videoData, System.Action OnVideoEndFunction = null)
     {
         if(!targetImage.gameObject.activeSelf)
         {
@@ -46,7 +49,7 @@ public class UIImageVideoPlayer : MonoBehaviour
 
         currentVideo = videoData;
         currentFrame = 0;
-        playRoutine = StartCoroutine(PlayRoutine());
+        playRoutine = StartCoroutine(PlayRoutine(OnVideoEndFunction));
     }
 
     public void Stop()
@@ -61,7 +64,7 @@ public class UIImageVideoPlayer : MonoBehaviour
         currentFrame = 0;
     }
 
-    private IEnumerator PlayRoutine()
+    private IEnumerator PlayRoutine(System.Action OnVidEnd)
     {
         float frameTime = 1f / frameRate;
 
@@ -80,6 +83,7 @@ public class UIImageVideoPlayer : MonoBehaviour
                 {
                     playRoutine = null;
                     OnVideoFinished?.Invoke();
+                    OnVidEnd?.Invoke();
                     yield break;
                 }
             }
