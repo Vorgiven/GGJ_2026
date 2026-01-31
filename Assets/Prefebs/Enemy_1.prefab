@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4087813113487979843}
-  maskType: {fileID: 11400000, guid: e7443f59d15a9fb40984984084f1be26, type: 2}
+  maskTypeData: {fileID: 11400000, guid: e7443f59d15a9fb40984984084f1be26, type: 2}
   maskEquipped: {fileID: 0}
   sprMask: {fileID: 5832861224231417515}
   moveSpeed: 2

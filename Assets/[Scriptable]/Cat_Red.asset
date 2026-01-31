@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Cat_Red
   m_EditorClassIdentifier: 
   maskSprite: {fileID: 21300000, guid: 4eb1bd5864553af48b4459918d02fe34, type: 3}
+  animatorOverride: {fileID: 22100000, guid: 6c7007f8f7d01644c883ec4426dcbfd8, type: 2}
   maskColor: {r: 0.6981132, g: 0.047780298, b: 0, a: 1}
   maskType: 0
