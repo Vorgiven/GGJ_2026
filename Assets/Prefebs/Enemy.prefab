@@ -557,7 +557,7 @@ MonoBehaviour:
   sprCharacter: {fileID: 6633863698456631425}
   transformFlip: {fileID: 7577723246392051218}
   transformScale: {fileID: 7931723323747410430}
-  moveSpeed: 2
+  moveSpeed: 1.5
   frustrationTimer:
     timeLast: 10
     autoReset: 0
