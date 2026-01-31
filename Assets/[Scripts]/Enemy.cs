@@ -43,12 +43,10 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
         maskEquipped = mask;
         if (maskEquipped.MaskType == maskType)
         {
-            Debug.Log("Match");
             GameManager.instance.CorrectMask();
         }
         else
         {
-            Debug.Log("Not Match");
             GameManager.instance.WrongMask();
         }
         ChangeState(EnemyState.DONE);
