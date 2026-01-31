@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
     }
     public void EquipMask(SubMask mask)
     {
-        if (mask == null) return;
+        if (mask == null || maskEquipped!=null) return;
         maskEquipped = mask;
         if (maskEquipped.MaskType == maskType)
         {
