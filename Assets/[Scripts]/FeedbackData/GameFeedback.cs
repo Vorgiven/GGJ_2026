@@ -116,6 +116,8 @@ public class GameFeedback : MonoBehaviour
                 audioS.pitch = UnityEngine.Random.Range(data.minPitch, data.maxPitch);
 
             audioS.PlayOneShot(audioClips[UnityEngine.Random.Range(0, audioClips.Count)].clip, audioClips[UnityEngine.Random.Range(0, audioClips.Count)].volume);
+
+            StartCoroutine(IeDisableAudio(audioS));
         }
         //foreach (var audio in data.Audios)
         //{
@@ -150,5 +152,12 @@ public class GameFeedback : MonoBehaviour
     //{
     //    return effectsPooling.ToArray();
     //}
-
+    private IEnumerator IeDisableAudio(AudioSource audioSource)
+    {
+        while (audioSource.isPlaying)
+        {
+            yield return null;
+        }
+        audioSource.gameObject.SetActive(false);
+    }
 }

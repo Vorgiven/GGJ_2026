@@ -42,12 +42,6 @@ public class GameManager : MonoBehaviour
         }
         imgComboBar.fillAmount = 1-timerCombo.GetPercentage();
 
-
-        // TEST
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            CorrectMask();
-        }
     }
 
     public void DeductHealth(int amt)
@@ -79,7 +73,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Add score
-        score += 10 * comboScoreToAdd;
+        score += 10 + comboScoreToAdd;
         txtScore.text = score.ToString();
 
         e_correct?.InvokeEvent();

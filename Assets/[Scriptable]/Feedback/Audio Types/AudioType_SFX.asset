@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AudioType_SFX
   m_EditorClassIdentifier: 
   audioTypeName: MUSIC
-  audioPrefeb: {fileID: 9175782412936127627, guid: 61711819c55c72a4abcfc39c76e073e7, type: 3}
-  audioMixerGroup: {fileID: -548871803281167214, guid: bb9c73206141cef4c87083f9fd7c0434, type: 2}
+  audioPrefeb: {fileID: 2829815638661253674, guid: 5c008e7336861534a93c81b4a8d16d51, type: 3}
+  audioMixerGroup: {fileID: -113626361982052898, guid: bb9c73206141cef4c87083f9fd7c0434, type: 2}
