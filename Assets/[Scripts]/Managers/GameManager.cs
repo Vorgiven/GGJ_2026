@@ -42,12 +42,6 @@ public class GameManager : MonoBehaviour
         }
         imgComboBar.fillAmount = 1-timerCombo.GetPercentage();
 
-
-        // TEST
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            CorrectMask();
-        }
     }
 
     public void DeductHealth(int amt)

@@ -14,14 +14,8 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
     private Vector3 posMove= new Vector3(-3, 0, 0);
     private Vector3 posDone = new Vector3(-6,6,0);
 
-    [Header("Test")]
-    public SubMask testMask;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            EquipMask(testMask);
-        }
 
         switch (enemyState)
         {
