@@ -114,7 +114,8 @@ public class GameFeedback : MonoBehaviour
 
             if (data.enableRandomPitch)
                 audioS.pitch = UnityEngine.Random.Range(data.minPitch, data.maxPitch);
-
+            else
+                audioS.pitch = 1;
             audioS.PlayOneShot(audioClips[UnityEngine.Random.Range(0, audioClips.Count)].clip, audioClips[UnityEngine.Random.Range(0, audioClips.Count)].volume);
 
             StartCoroutine(IeDisableAudio(audioS));
