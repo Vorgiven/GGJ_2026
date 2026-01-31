@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426ee1c3f8034ca4588913501272eecf, type: 3}
+  m_Name: VideoData_HideCredits
+  m_EditorClassIdentifier: 
+  Frames:
+  - {fileID: 21300000, guid: 67372ef3cb3cb6e4f8bda7c651003b9a, type: 3}
+  - {fileID: 21300000, guid: 98bd68a9ddc55234ea7f04e1eb171159, type: 3}
+  - {fileID: 21300000, guid: d8766ca4803db2148b5cba8e30fe1bec, type: 3}
+  - {fileID: 21300000, guid: 5cfdf011f054d1e438b0893a9e6463de, type: 3}
+  - {fileID: 21300000, guid: c54b6799681547f4cb1d5e80078a37ca, type: 3}
+  - {fileID: 21300000, guid: 39b6d074bd09e6e44aa200b3e7a838e8, type: 3}
+  - {fileID: 21300000, guid: 661942a47d6e2564abe27184a065f101, type: 3}
+  - {fileID: 21300000, guid: 56d015c532181804fb2cf6e2d4ba0815, type: 3}
+  - {fileID: 21300000, guid: 3820fe809ee8a274bbcb5f13e5855359, type: 3}
+  Loop: 0
