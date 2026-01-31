@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1.0f;
         foreach (CanvasGroup grp in canvasGrpMenus)
         {
             grp.gameObject.SetActive(false);    
@@ -53,5 +55,9 @@ public class MenuManager : MonoBehaviour
                 break;
             }
         }
+    }
+    public void OnLoadGame()
+    {
+        SceneManager.LoadScene("Game over scene");
     }
 }

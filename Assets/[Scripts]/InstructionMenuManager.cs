@@ -23,22 +23,21 @@ public class InstructionMenuManager : MonoBehaviour
     [SerializeField] FeedbackEventData e_curtainOpen;
     [SerializeField] FeedbackEventData e_curtainClose;
     [SerializeField] FeedbackEventData e_InstructionChangeSFX;
-    private void Start()
-    {
-        foreach(var instructionRect in InstructionList)
-        {
-            instructionRect.gameObject.SetActive(false);
-        }
-    }
+
     public void ToggleCurtain(bool toogle)
     {
         UIImageVideoPlayer.Instance.SetImageTarget(targetImage);
         if (toogle)
         {
+            foreach (var instructionRect in InstructionList)
+            {
+                instructionRect.gameObject.SetActive(false);
+            }
             ToggleIntructions(0);
+            InstructionList[0].anchoredPosition = new Vector2(750, InstructionList[0].anchoredPosition.y);
             instructionGrp.interactable = false;
             instructionGrp.alpha = 0;
-            UIImageVideoPlayer.Instance.Play(CLoseCUrtain, () => {
+            UIImageVideoPlayer.Instance.Play(CLoseCUrtain,true, () => {
                 instructionGrp.interactable = true;
                 instructionGrp.DOFade(1, .03f).SetEase(Ease.InSine); });
             e_curtainClose?.InvokeEvent();
@@ -47,7 +46,7 @@ public class InstructionMenuManager : MonoBehaviour
         {
             instructionGrp.interactable = false;
             instructionGrp.DOFade(0, .03f).SetEase(Ease.InSine);
-            UIImageVideoPlayer.Instance.Play(OpenCurtain, () => { menuManager.ForceCloseMenu(instruictionMenu); });
+            UIImageVideoPlayer.Instance.Play(OpenCurtain,true, () => { menuManager.ForceCloseMenu(instruictionMenu); });
             e_curtainOpen?.InvokeEvent();
         }
     }
@@ -56,8 +55,7 @@ public class InstructionMenuManager : MonoBehaviour
         e_InstructionChangeSFX?.InvokeEvent();
         RectTransform prevIns = InstructionList[currentINdex];
       
-        PrevBtn.SetActive(true);
-        NextBtn.SetActive(true);
+
         if (isNext)
         {
             currentINdex++;
@@ -91,6 +89,8 @@ public class InstructionMenuManager : MonoBehaviour
     void ToggleIntructions(int index)
     {
         currentINdex = index;
+        PrevBtn.SetActive(true);
+        NextBtn.SetActive(true);
         if (currentINdex == InstructionList.Count - 1)
         {
             NextBtn.SetActive(false);
@@ -99,7 +99,7 @@ public class InstructionMenuManager : MonoBehaviour
         {
             PrevBtn.SetActive(false);
         }
-        InstructionList[index].gameObject.SetActive(true);
+        InstructionList[currentINdex].gameObject.SetActive(true);
     }
 
 }
