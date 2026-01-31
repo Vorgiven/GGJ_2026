@@ -23,18 +23,16 @@ public class InstructionMenuManager : MonoBehaviour
     [SerializeField] FeedbackEventData e_curtainOpen;
     [SerializeField] FeedbackEventData e_curtainClose;
     [SerializeField] FeedbackEventData e_InstructionChangeSFX;
-    private void Start()
-    {
-        foreach(var instructionRect in InstructionList)
-        {
-            instructionRect.gameObject.SetActive(false);
-        }
-    }
+
     public void ToggleCurtain(bool toogle)
     {
         UIImageVideoPlayer.Instance.SetImageTarget(targetImage);
         if (toogle)
         {
+            foreach (var instructionRect in InstructionList)
+            {
+                instructionRect.gameObject.SetActive(false);
+            }
             ToggleIntructions(0);
             instructionGrp.interactable = false;
             instructionGrp.alpha = 0;
@@ -56,8 +54,7 @@ public class InstructionMenuManager : MonoBehaviour
         e_InstructionChangeSFX?.InvokeEvent();
         RectTransform prevIns = InstructionList[currentINdex];
       
-        PrevBtn.SetActive(true);
-        NextBtn.SetActive(true);
+
         if (isNext)
         {
             currentINdex++;
@@ -91,6 +88,8 @@ public class InstructionMenuManager : MonoBehaviour
     void ToggleIntructions(int index)
     {
         currentINdex = index;
+        PrevBtn.SetActive(true);
+        NextBtn.SetActive(true);
         if (currentINdex == InstructionList.Count - 1)
         {
             NextBtn.SetActive(false);
