@@ -165,8 +165,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskType: {fileID: 11400000, guid: e7443f59d15a9fb40984984084f1be26, type: 2}
   maskEquipped: {fileID: 0}
+  sprMask: {fileID: 5832861224231417515}
   moveSpeed: 2
-  testMask: {fileID: 0}
 --- !u!58 &1526125373087257544
 CircleCollider2D:
   m_ObjectHideFlags: 0

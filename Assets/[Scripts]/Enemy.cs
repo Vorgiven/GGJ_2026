@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
 {
     [SerializeField] private MaskTypeData maskType;
     [SerializeField] private SubMask maskEquipped;
+    [SerializeField] private SpriteRenderer sprMask;
     private EnemyState enemyState = EnemyState.MOVE;
     [Header("Stats")]
     [SerializeField] private float moveSpeed = 2f;
@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
         {
             GameManager.instance.WrongMask();
         }
+        sprMask.sprite = mask.MaskType.maskSprite;
         ChangeState(EnemyState.DONE);
     }
 
