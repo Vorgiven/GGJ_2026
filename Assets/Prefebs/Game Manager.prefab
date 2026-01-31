@@ -48,6 +48,21 @@ MonoBehaviour:
   healthValue:
     baseValue: 100
     currentValue: 0
+  score: 0
+  currentCombo: 0
+  comboToActivate: 3
+  highestCombo: 0
+  timerCombo:
+    timeLast: 4
+    autoReset: 1
+    timeElapsed: 0
+  imgHealthBar: {fileID: 0}
+  uiCombo: {fileID: 0}
+  imgComboBar: {fileID: 0}
+  txtCombo: {fileID: 0}
+  txtScore: {fileID: 0}
+  e_correct: {fileID: 11400000, guid: a1d00a3fce5ddb943a4156801d100920, type: 2}
+  e_wrong: {fileID: 11400000, guid: d3b033ecb36117944bcbbf73f47a746c, type: 2}
 --- !u!114 &415461098792272570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,3 +75,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1606ff0054f6f43a38957d1d5e2c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maskDrawer: {fileID: 0}
+  e_PickupMask: {fileID: 11400000, guid: 2d0ec93f8881bc448b2ed62ea352f00f, type: 2}
+  e_DropMask: {fileID: 11400000, guid: 8f77b6e550000ad4a918fecb8b39b687, type: 2}

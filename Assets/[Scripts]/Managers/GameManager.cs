@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int highestCombo = 0;
     [SerializeField] private TimerCheck timerCombo;
     [Header("UI")]
+    [SerializeField] private RectTransform uiHealth;
     [SerializeField] private Image imgHealthBar;
     [SerializeField] private GameObject uiCombo;
     [SerializeField] private Image imgComboBar;
@@ -33,6 +34,13 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         timerCombo.SetAutoResetTimer(false);
+
+        imgHealthBar.fillAmount = 1;
+        healthValue.Initialize();
+    }
+    private void Start()
+    {
+        txtScore.text = score.ToString();
     }
     private void Update()
     {
@@ -47,13 +55,19 @@ public class GameManager : MonoBehaviour
     public void DeductHealth(int amt)
     {
         healthValue.AddCurrentValue(-amt);
+        imgHealthBar.fillAmount = healthValue.GetPercentageValue();
+        uiHealth.DOShakeAnchorPos(0.15f, new Vector2(8f, 8f),20);
+    }
+    public void AddHealth(int amt)
+    {
+        healthValue.AddCurrentValue(amt);
+        imgHealthBar.fillAmount = healthValue.GetPercentageValue();
     }
     // Scoring system
     public void CorrectMask()
     {
         Debug.Log("NICE!");
         currentCombo++;
-
 
         int comboScoreToAdd = 0;
         // Check if eligible for combo
