@@ -8,6 +8,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private Transform posDone;
     [SerializeField] private Vector3 spawnPosition;
     [SerializeField] private float spawnYThreshold = 5;
+    [SerializeField] private int repeatWaveAt = 5;
+
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
     [SerializeField] public List<Transform> stopPoints = new List<Transform>();
     [SerializeField] private List<WaveInfo> waveInfos = new List<WaveInfo>();
@@ -44,6 +46,12 @@ public class WaveManager : MonoBehaviour
                 // Go to next wave
                 NextWave();
             }
+        }
+        else
+        {
+            currentWaveIndex = repeatWaveAt;
+            atMaxWave = false;
+            GetCurrentWaveInfo().StartWave();
         }
     }
     private void NextWave()
