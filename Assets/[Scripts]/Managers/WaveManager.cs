@@ -62,6 +62,7 @@ public class WaveManager : MonoBehaviour
 [System.Serializable]
 public class WaveInfo
 {
+    [SerializeField] private MaskGroupData maskGroupToUnlock;
     [HideInInspector] public Enemy enemyPrefeb;
     public List<MaskTypeData> maskTypes = new List<MaskTypeData>();
     public float waveLastTime = 60;
@@ -79,10 +80,13 @@ public class WaveInfo
     public void StartWave()
     {
         RandomizeTimeSpawn();
+        GameManager.instance.UnlockMaskGroup(maskGroupToUnlock);
+        waveLastElapsed = 0f;
     }
     // Updating wave such as when to spawn enemy
     public void UpdateWave()
     {
+        waveLastElapsed += Time.deltaTime;
         spawnDelayTimeElapsed += Time.deltaTime;
         if(spawnDelayTimeElapsed>= spawnDelayTime)
         {

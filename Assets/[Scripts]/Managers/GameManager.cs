@@ -9,7 +9,8 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField] private List<MaskGroupData> maskGroupUnlocks = new List<MaskGroupData>();
+    //[SerializeField] private List<MaskGroupData> maskGroupUnlocks = new List<MaskGroupData>();
+    [SerializeField] private List<MasskGroupUnlockInfo> maskGroupinfos = new List<MasskGroupUnlockInfo>();
 
     [SerializeField] private BaseValueInt healthValue = new BaseValueInt(100);
     [SerializeField] private int score = 0;
@@ -39,6 +40,11 @@ public class GameManager : MonoBehaviour
 
         imgHealthBar.fillAmount = 1;
         healthValue.Initialize();
+
+        foreach (var maskGroupinfo in maskGroupinfos)
+        {
+            maskGroupinfo.Initialize();
+        }
     }
     private void Start()
     {
@@ -107,5 +113,46 @@ public class GameManager : MonoBehaviour
         uiCombo.gameObject.SetActive(false);
     }
 
-    public List<MaskGroupData> GetMaskGroupUnlocks() => maskGroupUnlocks;
+    public List<MasskGroupUnlockInfo> GetMaskGroupInfos() => maskGroupinfos;
+    public void UnlockMaskGroup(MaskGroupData maskGroupUnlock)
+    {
+        MasskGroupUnlockInfo masskGroupUnlockInfo = GetMaskGroupInfos().Find((e) => e.maskGroupData == maskGroupUnlock);
+        if (masskGroupUnlockInfo != null)
+        {
+            masskGroupUnlockInfo.Unlock();
+        }
+    }
+}
+
+[System.Serializable]
+public class MasskGroupUnlockInfo
+{
+    public MaskGroupData maskGroupData;
+    public GameObject maskGroupDrawer;
+    public GameObject masGroupkSprite;
+    [SerializeField]private bool unlock = true;
+
+    public void Initialize()
+    {
+        if (unlock)
+        {
+            Unlock();
+        }
+        else
+        {
+            Lock();
+        }
+    }
+    public void Unlock()
+    {
+        unlock = true;
+        maskGroupDrawer.gameObject.SetActive(true);
+        masGroupkSprite.gameObject.SetActive(true);
+    }
+    public void Lock()
+    {
+        unlock = false;
+        maskGroupDrawer.gameObject.SetActive(false);
+        masGroupkSprite.gameObject.SetActive(false);
+    }
 }

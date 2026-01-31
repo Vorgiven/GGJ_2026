@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f0ab7974a92064ea708c855094a5ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPrefeb: {fileID: 4673115529394679789, guid: 817bbd3976ff6e440b1c4afbc9ebd023, type: 3}
   posMove: {fileID: 2416374513491200682}
   posDone: {fileID: 5228418347350865768}
   spawnPosition: {x: 10, y: 0, z: 0}
@@ -153,37 +154,42 @@ MonoBehaviour:
   - {fileID: 1702404745602169095}
   - {fileID: 5645021567777717177}
   waveInfos:
-  - enemies:
-    - {fileID: 4673115529394679789, guid: 817bbd3976ff6e440b1c4afbc9ebd023, type: 3}
+  - maskGroupToUnlock: {fileID: 0}
+    enemyPrefeb: {fileID: 0}
+    maskTypes:
+    - {fileID: 11400000, guid: e7443f59d15a9fb40984984084f1be26, type: 2}
+    waveLastTime: 10
+    spawnDelayMinMax:
+      minValue: 1
+      maxValue: 3
+    spawnPosition: {x: 0, y: 0, z: 0}
+    spawnYThreshold: 5
+    spawnPoints: []
+    posMove: {x: -3, y: 0, z: 0}
+    posDone: {x: -6, y: 6, z: 0}
+  - maskGroupToUnlock: {fileID: 11400000, guid: 7bbbbd63d945f3241b98a110c272e74c, type: 2}
+    enemyPrefeb: {fileID: 0}
+    maskTypes:
+    - {fileID: 11400000, guid: e7443f59d15a9fb40984984084f1be26, type: 2}
+    - {fileID: 11400000, guid: 2d92e681c58dc7d44b7d63540c769f43, type: 2}
+    waveLastTime: 30
+    spawnDelayMinMax:
+      minValue: 1
+      maxValue: 3
+    spawnPosition: {x: 0, y: 0, z: 0}
+    spawnYThreshold: 5
+    spawnPoints: []
+    posMove: {x: -3, y: 0, z: 0}
+    posDone: {x: -6, y: 6, z: 0}
+  - maskGroupToUnlock: {fileID: 0}
+    enemyPrefeb: {fileID: 0}
+    maskTypes:
+    - {fileID: 11400000, guid: e7443f59d15a9fb40984984084f1be26, type: 2}
+    - {fileID: 11400000, guid: 2d92e681c58dc7d44b7d63540c769f43, type: 2}
     waveLastTime: 60
     spawnDelayMinMax:
       minValue: 1
-      maxValue: 4
-    spawnPosition: {x: 0, y: 0, z: 0}
-    spawnYThreshold: 5
-    spawnPoints: []
-    posMove: {x: -3, y: 0, z: 0}
-    posDone: {x: -6, y: 6, z: 0}
-  - enemies:
-    - {fileID: 4673115529394679789, guid: 817bbd3976ff6e440b1c4afbc9ebd023, type: 3}
-    - {fileID: 4673115529394679789, guid: 4284c5ce7ea99eb44b78ce5f2265e81a, type: 3}
-    waveLastTime: 60
-    spawnDelayMinMax:
-      minValue: 3
-      maxValue: 10
-    spawnPosition: {x: 0, y: 0, z: 0}
-    spawnYThreshold: 5
-    spawnPoints: []
-    posMove: {x: -3, y: 0, z: 0}
-    posDone: {x: -6, y: 6, z: 0}
-  - enemies:
-    - {fileID: 4673115529394679789, guid: 817bbd3976ff6e440b1c4afbc9ebd023, type: 3}
-    - {fileID: 4673115529394679789, guid: 4284c5ce7ea99eb44b78ce5f2265e81a, type: 3}
-    - {fileID: 4673115529394679789, guid: b61c03c464b3c81468768bffd188e2ad, type: 3}
-    waveLastTime: 60
-    spawnDelayMinMax:
-      minValue: 3
-      maxValue: 10
+      maxValue: 3
     spawnPosition: {x: 0, y: 0, z: 0}
     spawnYThreshold: 5
     spawnPoints: []
