@@ -6,6 +6,7 @@ using UnityEngine;
 public class MaskTypeData : ScriptableObject
 {
     public Sprite maskSprite;
+    public AnimatorOverrideController animatorOverride;
     public Color maskColor;
     public MaskType maskType;
     public enum MaskType

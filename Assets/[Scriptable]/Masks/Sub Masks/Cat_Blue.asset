@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 449621adb38cf9a45a8d8b22206d11f8, type: 3}
-  m_Name: Cat_Red
+  m_Name: Cat_Blue
   m_EditorClassIdentifier: 
-  maskSprite: {fileID: 21300000, guid: 4eb1bd5864553af48b4459918d02fe34, type: 3}
-  maskColor: {r: 0.6981132, g: 0.047780298, b: 0, a: 1}
-  maskType: 0
+  maskSprite: {fileID: 21300000, guid: 4dc7c6172502120498f0fc5fe5cc758f, type: 3}
+  animatorOverride: {fileID: 22100000, guid: d393bdf7e75e6f24a99d82bb3621275b, type: 2}
+  maskColor: {r: 0.4433962, g: 0, b: 0.12149359, a: 1}
+  maskType: 1

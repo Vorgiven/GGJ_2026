@@ -47,4 +47,6 @@ MonoBehaviour:
   feedbackDatas:
   - {fileID: 11400000, guid: a1d00a3fce5ddb943a4156801d100920, type: 2}
   - {fileID: 11400000, guid: d3b033ecb36117944bcbbf73f47a746c, type: 2}
+  - {fileID: 11400000, guid: 2d0ec93f8881bc448b2ed62ea352f00f, type: 2}
+  - {fileID: 11400000, guid: 8f77b6e550000ad4a918fecb8b39b687, type: 2}
   defaultAudioType: {fileID: 11400000, guid: 57a84232237b6f54f820a299f09a73fd, type: 2}

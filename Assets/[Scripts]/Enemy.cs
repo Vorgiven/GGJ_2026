@@ -5,9 +5,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private MaskTypeData maskType;
+    [SerializeField] private MaskTypeData maskTypeData;
     [SerializeField] private SubMask maskEquipped;
     [SerializeField] private SpriteRenderer sprMask;
+    //[SerializeField] private SpriteRenderer sprCharacter;
     private EnemyState enemyState = EnemyState.MOVE;
     [Header("Stats")]
     [SerializeField] private float moveSpeed = 2f;
@@ -15,6 +16,10 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
     private Vector3 posMove= new Vector3(-3, 0, 0);
     private Vector3 posDone = new Vector3(-6,6,0);
 
+    private void Start()
+    {
+        //Initialize(maskTypeData);
+    }
     private void Update()
     {
         switch (enemyState)
@@ -46,17 +51,23 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
                 break;
         }
     }
+    public void Initialize(MaskTypeData data)
+    {
+        maskTypeData = data;
+        if (maskTypeData.animatorOverride != null)
+            animator.runtimeAnimatorController = maskTypeData.animatorOverride;
+    }
     public void EquipMask(SubMask mask)
     {
         if (mask == null || maskEquipped!=null) return;
         maskEquipped = mask;
-        if (maskEquipped.MaskType == maskType)
+        if (maskEquipped.MaskType == maskTypeData)
         {
-            GameManager.instance.CorrectMask();
+            GameManager.instance.CorrectMask(this);
         }
         else
         {
-            GameManager.instance.WrongMask();
+            GameManager.instance.WrongMask(this);
         }
         sprMask.sprite = mask.MaskType.maskSprite;
         ChangeState(EnemyState.DONE);

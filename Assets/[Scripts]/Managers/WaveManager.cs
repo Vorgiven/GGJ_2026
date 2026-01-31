@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    [SerializeField] private Enemy enemyPrefeb;
     [SerializeField] private Transform posMove;
     [SerializeField] private Transform posDone;
     [SerializeField] private Vector3 spawnPosition;
@@ -16,6 +17,7 @@ public class WaveManager : MonoBehaviour
         // set up spawnpoints for all wave infos and others
         foreach (WaveInfo waveInfo in waveInfos)
         {
+            waveInfo.enemyPrefeb = enemyPrefeb;
             waveInfo.spawnPosition = spawnPosition;
             waveInfo.spawnYThreshold = spawnYThreshold;
             waveInfo.spawnPoints = spawnPoints;
@@ -60,7 +62,8 @@ public class WaveManager : MonoBehaviour
 [System.Serializable]
 public class WaveInfo
 {
-    public List<Enemy> enemies = new List<Enemy>();
+    [HideInInspector] public Enemy enemyPrefeb;
+    public List<MaskTypeData> maskTypes = new List<MaskTypeData>();
     public float waveLastTime = 60;
     public MinMaxValueFloat spawnDelayMinMax = new MinMaxValueFloat(5,10);
     private float waveLastElapsed = 0;
@@ -90,15 +93,15 @@ public class WaveInfo
     private Enemy SpawnEnemy()
     {
         // Spawn enemy at random
-        int enemySpawnIndex = Random.Range(0, enemies.Count);
         int spawnPointIndex = Random.Range(0, spawnPoints.Count);
+        int maskTypeIndex = Random.Range(0, maskTypes.Count);
 
-        //Enemy enemySpawn = GameObject.Instantiate(enemies[enemySpawnIndex], spawnPoints[spawnPointIndex]);
-        Enemy enemySpawn = GameObject.Instantiate(enemies[enemySpawnIndex]);
+        Enemy enemySpawn = GameObject.Instantiate(enemyPrefeb);
         enemySpawn.transform.position = new Vector3(spawnPosition.x
             , spawnPosition.y + Random.Range(-spawnYThreshold, spawnYThreshold) // randomize Y
             , spawnPosition.z);
 
+        enemySpawn.Initialize(maskTypes[maskTypeIndex]);
         enemySpawn.UpdateMovePos(posMove);
         enemySpawn.UpdateDonePos(posDone);
         RandomizeTimeSpawn();

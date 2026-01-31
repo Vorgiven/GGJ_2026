@@ -9,6 +9,8 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    [SerializeField] private List<MaskGroupData> maskGroupUnlocks = new List<MaskGroupData>();
+
     [SerializeField] private BaseValueInt healthValue = new BaseValueInt(100);
     [SerializeField] private int score = 0;
     [SerializeField] private int currentCombo = 0;
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int highestCombo = 0;
     [SerializeField] private TimerCheck timerCombo;
     [Header("UI")]
+    [SerializeField] private RectTransform uiHealth;
     [SerializeField] private Image imgHealthBar;
     [SerializeField] private GameObject uiCombo;
     [SerializeField] private Image imgComboBar;
@@ -33,6 +36,13 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         timerCombo.SetAutoResetTimer(false);
+
+        imgHealthBar.fillAmount = 1;
+        healthValue.Initialize();
+    }
+    private void Start()
+    {
+        txtScore.text = score.ToString();
     }
     private void Update()
     {
@@ -47,13 +57,18 @@ public class GameManager : MonoBehaviour
     public void DeductHealth(int amt)
     {
         healthValue.AddCurrentValue(-amt);
+        imgHealthBar.fillAmount = healthValue.GetPercentageValue();
+        uiHealth.DOShakeAnchorPos(0.15f, new Vector2(8f, 8f),20);
+    }
+    public void AddHealth(int amt)
+    {
+        healthValue.AddCurrentValue(amt);
+        imgHealthBar.fillAmount = healthValue.GetPercentageValue();
     }
     // Scoring system
-    public void CorrectMask()
+    public void CorrectMask(Enemy enemyTarget)
     {
-        Debug.Log("NICE!");
         currentCombo++;
-
 
         int comboScoreToAdd = 0;
         // Check if eligible for combo
@@ -76,13 +91,13 @@ public class GameManager : MonoBehaviour
         score += 10 + comboScoreToAdd;
         txtScore.text = score.ToString();
 
-        e_correct?.InvokeEvent();
+        e_correct?.InvokeEvent(enemyTarget.transform.position,Quaternion.identity,enemyTarget.transform);
     }
-    public void WrongMask()
+    public void WrongMask(Enemy enemyTarget)
     {
         DeductHealth(10);
-        e_wrong?.InvokeEvent();
         ResetCombo();
+        e_wrong?.InvokeEvent(enemyTarget.transform.position, Quaternion.identity, enemyTarget.transform);
     }
 
     public void ResetCombo()
@@ -91,4 +106,6 @@ public class GameManager : MonoBehaviour
         timerCombo.ResetTimer();
         uiCombo.gameObject.SetActive(false);
     }
+
+    public List<MaskGroupData> GetMaskGroupUnlocks() => maskGroupUnlocks;
 }
