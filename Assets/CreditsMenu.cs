@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class CreditsMenu : MonoBehaviour
 {
     [SerializeField] Image targetVidImage;
-    [SerializeField] VideoData ShowCreditsVideoData;
-    [SerializeField] VideoData HideCreditsVideoData;
 
     [SerializeField] CanvasGroup buttonCanvasGrp;
     [SerializeField] CanvasGroup CreditsGrp;
@@ -31,15 +29,18 @@ public class CreditsMenu : MonoBehaviour
             buttonCanvasGrp.DOFade(0, 0);
 
             DOVirtual.DelayedCall(0.3667f / 22 * 4, () => {
-                creditsText.DOAnchorPosY(-120, 0.3667f / 22 * 3).SetEase(Ease.InSine).OnComplete(() => {
-                    creditsText.DOAnchorPosY(-30, 0.3667f / 22 * 5).SetEase(Ease.OutSine).OnComplete(() => {
-                        creditsText.DOAnchorPosY(-50, 0.3667f / 22 * 10).SetEase(Ease.InSine);
+                creditsText.DOAnchorPosY(-13, 0.3667f / 22 * 3).SetEase(Ease.InSine).OnComplete(() => {
+                    creditsText.DOAnchorPosY(46, 0.3667f / 22 * 5).SetEase(Ease.OutSine).OnComplete(() => {
+                        creditsText.DOAnchorPosY(3, 0.3667f / 22 * 10).SetEase(Ease.InSine).OnComplete(()=> 
+                        { 
+                            buttonCanvasGrp.DOFade(1, .15f).SetEase(Ease.InCubic).OnComplete(()=> {
+                                buttonCanvasGrp.interactable = true;
+                            }); 
+                        });
                     });
                 });
             });
             
-            UIImageVideoPlayer.Instance.Play(ShowCreditsVideoData,true, () => { buttonCanvasGrp.interactable = true; 
-                buttonCanvasGrp.DOFade(1, .15f).SetEase(Ease.InCubic); });
         }
         else
         {
@@ -49,9 +50,11 @@ public class CreditsMenu : MonoBehaviour
 
             e_HideCredits?.InvokeEvent();
             buttonCanvasGrp.interactable = false;
-            creditsText.DOAnchorPosY(770, 0.3667f).SetEase(Ease.OutSine);
+            creditsText.DOAnchorPosY(1113, 0.3667f).SetEase(Ease.OutSine).OnComplete(()=>
+            {
+                menuManger.ForceCloseMenu(CreditsGrp);
+            });
             buttonCanvasGrp.DOFade(0, .05f).SetEase(Ease.InCubic);
-            UIImageVideoPlayer.Instance.Play(HideCreditsVideoData, true,() => { menuManger.ForceCloseMenu(CreditsGrp); });
         }
     }
 }
