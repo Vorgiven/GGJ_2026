@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TimerCheck timerCombo;
     [Header("UI")]
     [SerializeField] private Image imgHealthBar;
+    [SerializeField] private GameObject uiCombo;
+    [SerializeField] private Image imgComboBar;
+    [SerializeField] private TMP_Text txtCombo;
     [Header("Feedback")]
     [SerializeField] private FeedbackEventData e_correct;
     [SerializeField] private FeedbackEventData e_wrong;
@@ -26,6 +30,23 @@ public class GameManager : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
+
+        timerCombo.SetAutoResetTimer(false);
+    }
+    private void Update()
+    {
+        if(timerCombo.CheckTimer(currentCombo>0))
+        {
+            ResetCombo();
+        }
+        imgComboBar.fillAmount = 1-timerCombo.GetPercentage();
+
+
+        // TEST
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            CorrectMask();
+        }
     }
 
     public void DeductHealth(int amt)
@@ -36,7 +57,6 @@ public class GameManager : MonoBehaviour
     public void CorrectMask()
     {
         Debug.Log("NICE!");
-        e_correct?.InvokeEvent();
         currentCombo++;
 
 
@@ -46,16 +66,20 @@ public class GameManager : MonoBehaviour
         {
             float comboMultiplier = 1;
             comboScoreToAdd = (int)(comboMultiplier * 1);
+            uiCombo.gameObject.SetActive(true);
+            timerCombo.ResetTimer();
+            txtCombo.text = currentCombo + "x\nCombo";
         }
 
         // Highest Combo
-        if(currentCombo > highestCombo)
+        if (currentCombo > highestCombo)
         {
             highestCombo = currentCombo;
         }
 
         // Add score
         score += 10 * comboScoreToAdd;
+        e_correct?.InvokeEvent();
     }
     public void WrongMask()
     {
@@ -67,5 +91,7 @@ public class GameManager : MonoBehaviour
     public void ResetCombo()
     {
         currentCombo = 0;
+        timerCombo.ResetTimer();
+        uiCombo.gameObject.SetActive(false);
     }
 }
