@@ -17,15 +17,13 @@ public class MaskUIFollow : MonoBehaviour
 
     void Update()
     {
-        if (!maskToFollow) return;
-
-        UpdateFollowPosition();
-    }
-
-    void UpdateFollowPosition()
-    {
         if (!maskToFollowRectTrans || !canvas) return;
 
+        UpdateFollowTransform();
+    }
+
+    void UpdateFollowTransform()
+    {
         Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(
             canvas.worldCamera,
             maskToFollowRectTrans.position
@@ -39,5 +37,7 @@ public class MaskUIFollow : MonoBehaviour
         );
 
         rectTransform.anchoredPosition = localPos;
+        rectTransform.localRotation = maskToFollowRectTrans.localRotation;
+        rectTransform.localScale = maskToFollowRectTrans.localScale;
     }
 }

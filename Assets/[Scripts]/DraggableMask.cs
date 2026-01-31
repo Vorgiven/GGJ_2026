@@ -1,16 +1,20 @@
 using DG.Tweening;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DraggableMask : MonoBehaviour
+public class DraggableMask : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     [SerializeField] Image image;
+    [SerializeField] float scaleAmnt = 1.15f;
     public bool Dragged = false;
     public Image ImageComponent => image;
 
     RectTransform rectTransform;
-    Tween activeTween;
+    Tween lerpBackToPositionTween;
+    Sequence shakeSequence;
+    Quaternion baseRotation;
 
     void Awake()
     {
@@ -20,6 +24,8 @@ public class DraggableMask : MonoBehaviour
         rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         rectTransform.pivot = new Vector2(0.5f, 0.5f);
+
+        baseRotation = rectTransform.localRotation;
     }
 
     public virtual void BeginDrag()
@@ -28,6 +34,13 @@ public class DraggableMask : MonoBehaviour
         transform.SetAsFirstSibling();
         image.raycastTarget = false;
         KillTween();
+
+        shakeSequence = DOTween.Sequence()
+               .Append(rectTransform.DOLocalRotate(new Vector3(0, 0, 6f), 0.05f).SetEase(Ease.Linear))
+               .Append(rectTransform.DOLocalRotate(Vector3.zero, 0.05f).SetEase(Ease.Linear))
+               .Append(rectTransform.DOLocalRotate(new Vector3(0, 0, -6f), 0.05f).SetEase(Ease.Linear))
+               .Append(rectTransform.DOLocalRotate(Vector3.zero, 0.05f).SetEase(Ease.Linear))
+               .SetLoops(-1, LoopType.Restart);
     }
 
     public void EndDrag(float duration, RectTransform newParent = null)
@@ -42,7 +55,7 @@ public class DraggableMask : MonoBehaviour
         }
 
         // Always return to visual center
-        activeTween = rectTransform
+        lerpBackToPositionTween = rectTransform
             .DOAnchorPos(Vector2.zero, duration)
             .SetEase(Ease.OutQuad).OnComplete(() => { Dragged = false; });
     }
@@ -54,10 +67,27 @@ public class DraggableMask : MonoBehaviour
 
     void KillTween()
     {
-        if (activeTween != null && activeTween.IsActive())
+        if (lerpBackToPositionTween != null && lerpBackToPositionTween.IsActive())
         {
-            activeTween.Kill();
-            activeTween = null;
+            lerpBackToPositionTween.Kill();
+            lerpBackToPositionTween = null;
         }
+        if (shakeSequence != null && shakeSequence.IsActive())
+        {
+            shakeSequence.Kill();
+            shakeSequence = null;
+            rectTransform.localRotation = baseRotation;
+        }
+
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        rectTransform.DOScale(new Vector2(scaleAmnt, scaleAmnt),.15f).SetEase(Ease.InQuad);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        rectTransform.DOScale(Vector2.one, .15f).SetEase(Ease.OutQuad);
     }
 }
