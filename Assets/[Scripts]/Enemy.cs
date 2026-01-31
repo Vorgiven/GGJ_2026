@@ -63,11 +63,11 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
         maskEquipped = mask;
         if (maskEquipped.MaskType == maskTypeData)
         {
-            GameManager.instance.CorrectMask();
+            GameManager.instance.CorrectMask(this);
         }
         else
         {
-            GameManager.instance.WrongMask();
+            GameManager.instance.WrongMask(this);
         }
         sprMask.sprite = mask.MaskType.maskSprite;
         ChangeState(EnemyState.DONE);

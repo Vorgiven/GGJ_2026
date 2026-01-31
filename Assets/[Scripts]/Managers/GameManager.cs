@@ -9,6 +9,8 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    [SerializeField] private List<MaskGroupData> maskGroupUnlocks = new List<MaskGroupData>();
+
     [SerializeField] private BaseValueInt healthValue = new BaseValueInt(100);
     [SerializeField] private int score = 0;
     [SerializeField] private int currentCombo = 0;
@@ -64,7 +66,7 @@ public class GameManager : MonoBehaviour
         imgHealthBar.fillAmount = healthValue.GetPercentageValue();
     }
     // Scoring system
-    public void CorrectMask()
+    public void CorrectMask(Enemy enemyTarget)
     {
         Debug.Log("NICE!");
         currentCombo++;
@@ -90,13 +92,13 @@ public class GameManager : MonoBehaviour
         score += 10 + comboScoreToAdd;
         txtScore.text = score.ToString();
 
-        e_correct?.InvokeEvent();
+        e_correct?.InvokeEvent(enemyTarget.transform.position,Quaternion.identity,enemyTarget.transform);
     }
-    public void WrongMask()
+    public void WrongMask(Enemy enemyTarget)
     {
         DeductHealth(10);
-        e_wrong?.InvokeEvent();
         ResetCombo();
+        e_wrong?.InvokeEvent(enemyTarget.transform.position, Quaternion.identity, enemyTarget.transform);
     }
 
     public void ResetCombo()
@@ -105,4 +107,6 @@ public class GameManager : MonoBehaviour
         timerCombo.ResetTimer();
         uiCombo.gameObject.SetActive(false);
     }
+
+    public List<MaskGroupData> GetMaskGroupUnlocks() => maskGroupUnlocks;
 }

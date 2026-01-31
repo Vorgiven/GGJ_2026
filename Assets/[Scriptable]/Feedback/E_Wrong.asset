@@ -21,4 +21,5 @@ MonoBehaviour:
   audios:
   - clip: {fileID: 8300000, guid: d1bff372443c7ec408bc4e844c8593f8, type: 3}
     volume: 1
-  effects: []
+  effects:
+  - {fileID: 11400000, guid: c5d2d442522b60d4aab4b241b818360e, type: 2}

@@ -780,6 +780,14 @@ PrefabInstance:
       propertyPath: timerCombo.timeLast
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2224210329147744317, guid: 1d98e74c6b6e698418650a90b20dd2cc, type: 3}
+      propertyPath: maskGroupUnlocks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2224210329147744317, guid: 1d98e74c6b6e698418650a90b20dd2cc, type: 3}
+      propertyPath: maskGroupUnlocks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1c819b012092d5d49a5a3409681179d1, type: 2}
     - target: {fileID: 3841074833159183978, guid: 1d98e74c6b6e698418650a90b20dd2cc, type: 3}
       propertyPath: m_Name
       value: Game Manager
