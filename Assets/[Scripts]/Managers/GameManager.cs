@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Add score
-        score += 10 * comboScoreToAdd;
+        score += 10 + comboScoreToAdd;
         txtScore.text = score.ToString();
 
         e_correct?.InvokeEvent();
