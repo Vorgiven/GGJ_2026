@@ -7,6 +7,7 @@ public class MenuManager : MonoBehaviour
 {
     CanvasGroup currentActiveGrp;
     [SerializeField] List<CanvasGroup> canvasGrpMenus;
+    [SerializeField] string gameSceneName;
 
     private void Start()
     {
@@ -58,6 +59,6 @@ public class MenuManager : MonoBehaviour
     }
     public void OnLoadGame()
     {
-        SceneManager.LoadScene("Game over scene");
+        SceneManager.LoadScene(gameSceneName);
     }
 }
