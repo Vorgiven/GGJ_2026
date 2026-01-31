@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject uiCombo;
     [SerializeField] private Image imgComboBar;
     [SerializeField] private TMP_Text txtCombo;
+    [SerializeField] private TMP_Text txtScore;
     [Header("Feedback")]
     [SerializeField] private FeedbackEventData e_correct;
     [SerializeField] private FeedbackEventData e_wrong;
@@ -79,6 +80,8 @@ public class GameManager : MonoBehaviour
 
         // Add score
         score += 10 * comboScoreToAdd;
+        txtScore.text = score.ToString();
+
         e_correct?.InvokeEvent();
     }
     public void WrongMask()
