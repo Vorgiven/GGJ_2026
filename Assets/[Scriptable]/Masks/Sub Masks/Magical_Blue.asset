@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449621adb38cf9a45a8d8b22206d11f8, type: 3}
+  m_Name: Magical_Blue
+  m_EditorClassIdentifier: 
+  maskSprite: {fileID: 21300000, guid: 4dc7c6172502120498f0fc5fe5cc758f, type: 3}
+  animatorOverride: {fileID: 22100000, guid: 4dbb9c6c7cd2ac546821f1ff248f7f89, type: 2}
+  maskColor: {r: 0, g: 0.4056604, b: 0.064702496, a: 1}
+  maskType: 4
+  flipCharacter: 1
+  offsetPosCharacter: {x: 0, y: 0, z: 0}
+  scaleCharacter: 1
+  offsetPosMask: {x: -0.1, y: 0.675, z: 0}
+  scaleMask: 0.15

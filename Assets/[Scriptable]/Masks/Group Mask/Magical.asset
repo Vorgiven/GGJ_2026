@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69b9f003b12be3340aa96da2c3132699, type: 3}
-  m_Name: Hospital
+  m_Name: Magical
   m_EditorClassIdentifier: 
-  MaskA: {fileID: 11400000, guid: aea0515afd4d07341bb4675b0f240424, type: 2}
-  MaskB: {fileID: 11400000, guid: bba6c960d56c515499a94b5aa3b3e0bb, type: 2}
+  MaskA: {fileID: 11400000, guid: 8ced2c33f319c3844bf0adc2c4656a62, type: 2}
+  MaskB: {fileID: 11400000, guid: b90e4a449f2871a45beebb535500064d, type: 2}

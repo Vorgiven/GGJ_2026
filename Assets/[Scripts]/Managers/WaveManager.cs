@@ -48,7 +48,7 @@ public class WaveManager : MonoBehaviour
     }
     private void NextWave()
     {
-        if (currentWaveIndex >= waveInfos.Count)
+        if (currentWaveIndex >= waveInfos.Count-1)
         {
             atMaxWave = true;
             return;

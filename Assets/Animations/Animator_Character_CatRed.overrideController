@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Animator_Character_CatRed
+  m_Controller: {fileID: 9100000, guid: ca06c6e518967174c96723e85952d58e, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 5f18bab754a3102408aa46de8e19fe79, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5f18bab754a3102408aa46de8e19fe79, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6a7ef5fe54e71b240aca24dc8f21c456, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6a7ef5fe54e71b240aca24dc8f21c456, type: 2}

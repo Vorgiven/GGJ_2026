@@ -16,3 +16,15 @@ MonoBehaviour:
   animatorOverride: {fileID: 22100000, guid: d393bdf7e75e6f24a99d82bb3621275b, type: 2}
   maskColor: {r: 0.4433962, g: 0, b: 0.12149359, a: 1}
   maskType: 1
+  flipCharacter: 1
+  offsetPosCharacter: {x: 0, y: 0, z: 0}
+  scaleCharacter: 1
+  offsetPosMask: {x: -0.93, y: 4.04, z: 0}
+  scaleMask: 1
+  spriteMaskOffsets:
+  - maskTarget: {fileID: 11400000, guid: aea0515afd4d07341bb4675b0f240424, type: 2}
+    offsetPosMask: {x: -0.04, y: 5.06, z: 0}
+    scaleMask: 0.55
+  - maskTarget: {fileID: 11400000, guid: bba6c960d56c515499a94b5aa3b3e0bb, type: 2}
+    offsetPosMask: {x: -0.04, y: 5.06, z: 0}
+    scaleMask: 0.55

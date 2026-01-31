@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449621adb38cf9a45a8d8b22206d11f8, type: 3}
+  m_Name: Demon_Red
+  m_EditorClassIdentifier: 
+  maskSprite: {fileID: 21300000, guid: 5707c4f1c97b1264cb963393927ebf1c, type: 3}
+  animatorOverride: {fileID: 22100000, guid: 58db9a2520fda3d49a4393f56459fcaa, type: 2}
+  maskColor: {r: 0.07967737, g: 0.012548926, b: 0.8867924, a: 1}
+  maskType: 3
+  flipCharacter: 1
+  offsetPosCharacter: {x: 0, y: 0, z: 0}
+  scaleCharacter: 1.2
+  offsetPosMask: {x: 0.54, y: 5.06, z: 0}
+  scaleMask: 0.55
+  spriteMaskOffsets:
+  - maskTarget: {fileID: 11400000, guid: 2d92e681c58dc7d44b7d63540c769f43, type: 2}
+    offsetPosMask: {x: -0.09, y: 3.41, z: 0}
+    scaleMask: 0.73
+  - maskTarget: {fileID: 11400000, guid: e7443f59d15a9fb40984984084f1be26, type: 2}
+    offsetPosMask: {x: -0.09, y: 3.41, z: 0}
+    scaleMask: 0.73

@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
     [SerializeField] private MaskTypeData maskTypeData;
     [SerializeField] private SubMask maskEquipped;
     [SerializeField] private SpriteRenderer sprMask;
+    [SerializeField] private SpriteRenderer sprCharacter;
+    [SerializeField] private Transform transformFlip;
+    [SerializeField] private Transform transformScale;
     //[SerializeField] private SpriteRenderer sprCharacter;
     private EnemyState enemyState = EnemyState.MOVE;
     [Header("Stats")]
@@ -106,14 +109,46 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
     }
     public void Initialize(MaskTypeData data)
     {
+        if (data == null) return;
         maskTypeData = data;
         if (maskTypeData.animatorOverride != null)
             animator.runtimeAnimatorController = maskTypeData.animatorOverride;
+
+        //sprCharacter.sprite = maskTypeData.maskSprite
+        transformFlip.localScale = new Vector3(1 * (maskTypeData.flipCharacter ? -1 : 1), 1, 1);
+        transformScale.localScale = Vector3.one * maskTypeData.scaleCharacter;
+        transformScale.localPosition = maskTypeData.offsetPosCharacter;
+
+        //sprMask.transform.localScale = new Vector3(1 * (maskTypeData.flipMask ? -1 : 1), 1, 1);
+
+        sprMask.transform.localScale = Vector3.one * maskTypeData.scaleMask;
+        sprMask.transform.localPosition = maskTypeData.offsetPosMask;
+
+
+
     }
     public void EquipMask(SubMask mask)
     {
         if (mask == null || maskEquipped!=null) return;
         maskEquipped = mask;
+        SpriteMaskOffset spriteMaskOffset = maskTypeData.spriteMaskOffsets.Find(x => x.maskTarget.maskType == maskEquipped.MaskType.maskType);
+
+        if (spriteMaskOffset != null)
+        {
+            sprMask.transform.localScale = Vector3.one * spriteMaskOffset.scaleMask;
+            sprMask.transform.localPosition = spriteMaskOffset.offsetPosMask;
+        }
+        //sprMask.transform.localScale = Vector3.one * maskEquipped.MaskType.scaleMask;
+        //if(maskEquipped.MaskType.flipCharacter != maskTypeData.flipCharacter)
+        //{
+        //    sprMask.transform.localScale = new Vector3(-sprMask.transform.localScale.x,
+        //     sprMask.transform.localScale.y,
+        //     sprMask.transform.localScale.z);
+        //}
+
+        //sprMask.transform.localPosition = maskEquipped.MaskType.offsetPosMask;
+
+
         if (maskEquipped.MaskType == maskTypeData)
         {
             GameManager.instance.CorrectMask(this);
