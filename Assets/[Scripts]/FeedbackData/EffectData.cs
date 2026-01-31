@@ -7,5 +7,4 @@ public class EffectData : ScriptableObjectIndex
 {
     public string effectName;
     public GameObject effectObject;
-    private int index;
 }

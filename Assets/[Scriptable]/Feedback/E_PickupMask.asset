@@ -20,5 +20,5 @@ MonoBehaviour:
   maxPitch: 1.5
   audios:
   - clip: {fileID: 8300000, guid: 01635700dcb8dfe4c8c1b51400cd8f59, type: 3}
-    volume: 1
+    volume: 5
   effects: []

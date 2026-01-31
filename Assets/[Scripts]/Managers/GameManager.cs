@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour
     // Scoring system
     public void CorrectMask(Enemy enemyTarget)
     {
-        Debug.Log("NICE!");
         currentCombo++;
 
         int comboScoreToAdd = 0;
