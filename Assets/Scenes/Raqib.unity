@@ -789,11 +789,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1006708162232731152, guid: 2a95a531c0984d446adf95cc26838522, type: 3}
       propertyPath: waveInfos.Array.data[0].spawnDelayMinMax.maxValue
-      value: 0.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1006708162232731152, guid: 2a95a531c0984d446adf95cc26838522, type: 3}
       propertyPath: waveInfos.Array.data[0].spawnDelayMinMax.minValue
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1151816598765801939, guid: 2a95a531c0984d446adf95cc26838522, type: 3}
       propertyPath: m_LocalPosition.x

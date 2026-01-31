@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
@@ -67,6 +68,11 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
     }
     public bool CompareState(EnemyState checkState) => enemyState == checkState;
     #endregion
+
+    //private void OnMouseOver()
+    //{
+    //    Debug.Log("Hover");
+    //}
 }
 public enum EnemyState
 {
