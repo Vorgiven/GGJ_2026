@@ -11,17 +11,20 @@ public class MaskGroup : DraggableMask
 
     public void SetMashGroupSlot(MaskGroupSlot _newSlot)
     {
-        if (currentSlot != null)
+        if (currentSlot is ManiquinHead maniquinHead)
         {
-            currentSlot.SwapMaskDataGrp(null);
+            maniquinHead.SwapMaskDataGrp(null);
         }
         currentSlot = _newSlot;
-        currentSlot.SwapMaskDataGrp(this);
+        if (currentSlot is ManiquinHead maniquinHeadTemp)
+        {
+            maniquinHeadTemp.SwapMaskDataGrp(this);
+        }
     }
     public override void BeginDrag()
     {
         base.BeginDrag();
-        if(!transform.parent.GetComponent<MaskGroupSlot>().IsDrawer)
+        if(currentSlot is ManiquinHead)
         {
             InteractionManager.Instance.MaskDrawer.ToggleDrawer(true);
         }

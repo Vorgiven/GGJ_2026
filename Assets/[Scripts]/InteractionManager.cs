@@ -166,14 +166,19 @@ public class InteractionManager : MonoBehaviour
         }
         if (equipeedMaskGrp)
         {
-            if (currentlyHoveredGrpSlot && currentlyHoveredGrpSlot.CurrentlyEquippedMaskGrp == null)
+            if (currentlyHoveredGrpSlot && currentlyHoveredGrpSlot is ManiquinHead) // is a not drawer
             {
                 equipeedMaskGrp.SetMashGroupSlot(currentlyHoveredGrpSlot);
                 equipeedMaskGrp.EndDrag(0.25f, currentlyHoveredGrpSlot.RectTransform);
                 // maskDrawer.ToggleDrawer(false);
-                currentlyHoveredGrpSlot = null;
             }
-            else
+            else if (currentlyHoveredGrpSlot && currentlyHoveredGrpSlot is not ManiquinHead && currentlyHoveredGrpSlot.CurrentlyEquippedMaskGrp == equipeedMaskGrp)  // is a drawer
+            {
+                equipeedMaskGrp.SetMashGroupSlot(currentlyHoveredGrpSlot);
+                equipeedMaskGrp.EndDrag(0.25f, currentlyHoveredGrpSlot.RectTransform);
+                // maskDrawer.ToggleDrawer(false);
+            }
+            else // failure drag
             {
                 equipeedMaskGrp.EndDrag(0.25f);
             }
