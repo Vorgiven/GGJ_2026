@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         healthValue.AddCurrentValue(-amt);
         imgHealthBar.fillAmount = healthValue.GetPercentageValue();
         uiHealth.DOShakeAnchorPos(0.15f, new Vector2(8f, 8f),20);
-        if(healthValue.GetBaseValue() <= 0)
+        if(healthValue.GetCurrentValue() <= 0)
         {
             OnGameEnd?.Invoke();
         }

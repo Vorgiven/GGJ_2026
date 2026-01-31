@@ -8,6 +8,7 @@ public class EndGameManager : MonoBehaviour
 {
     [Header("Reference to place manually")]
     [SerializeField] GameManager gameManager;
+    [SerializeField] AudioSource musicPlayer;
 
     [Header("Auto References")]
     [SerializeField] Canvas EndGameCanvas;
@@ -18,7 +19,6 @@ public class EndGameManager : MonoBehaviour
     [SerializeField] CanvasGroup comboGrp;
     [SerializeField] TMP_Text combo;
     [SerializeField] CanvasGroup mainMenuBtn;
-    [SerializeField] AudioSource musicPlayer;
 
     [Header("Feedback")]
     [SerializeField] FeedbackEventData endGameSFX;
