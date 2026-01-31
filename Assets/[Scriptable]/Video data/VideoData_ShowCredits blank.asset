@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426ee1c3f8034ca4588913501272eecf, type: 3}
+  m_Name: VideoData_ShowCredits blank
+  m_EditorClassIdentifier: 
+  Frames:
+  - {fileID: 21300000, guid: facc7970eadf0214782ebea1b9ce841a, type: 3}
+  - {fileID: 21300000, guid: facc7970eadf0214782ebea1b9ce841a, type: 3}
+  - {fileID: 21300000, guid: dd523afcfe8a9f846bd91ab49c3d5aeb, type: 3}
+  - {fileID: 21300000, guid: 26dbeb35e2bf7c44d8fc73473128688a, type: 3}
+  - {fileID: 21300000, guid: cd35ca9603dc5584c9ef290d1d369d3c, type: 3}
+  - {fileID: 21300000, guid: 18b3229a057ad414ba90dc1b08dcd27e, type: 3}
+  - {fileID: 21300000, guid: 5a27036dc95011349bc650b5d66204a2, type: 3}
+  - {fileID: 21300000, guid: 7b5a09f7b96037c43885e0d185378ae1, type: 3}
+  - {fileID: 21300000, guid: b0322c7806e32094ab25b3e4d54655a6, type: 3}
+  - {fileID: 21300000, guid: d05073f30e4fc7849b2835c6ba9fa92d, type: 3}
+  - {fileID: 21300000, guid: 19867abd5005d014c8941e9cfda6d2b7, type: 3}
+  - {fileID: 21300000, guid: 1a71abb2b49aa8047ad540131f0bbe6f, type: 3}
+  - {fileID: 21300000, guid: cb550b56e63b1264eb1d65f78cf7143e, type: 3}
+  - {fileID: 21300000, guid: d588cb86af8d22f40ae2732f262fce87, type: 3}
+  - {fileID: 21300000, guid: b0fee2653d1cd1d4daf16e1c6df959b9, type: 3}
+  - {fileID: 21300000, guid: c57b3eff922f12d4e833d522e3107bb1, type: 3}
+  - {fileID: 21300000, guid: 02c3e7589d4ebb647addd31882c189a7, type: 3}
+  - {fileID: 21300000, guid: 49a1f332ffdc7114cb40618f68cf15e9, type: 3}
+  - {fileID: 21300000, guid: 88ecac5ed336611449f9ad8c076e5f8a, type: 3}
+  - {fileID: 21300000, guid: 31d00cfebb65f5e48999ca53662e31fe, type: 3}
+  - {fileID: 21300000, guid: c792c540e47bd2648affcf2cafe9660c, type: 3}
+  - {fileID: 21300000, guid: 2cda56e7b4dfcb845be7dc5f930247c7, type: 3}
+  Loop: 0
