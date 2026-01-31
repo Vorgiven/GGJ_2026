@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class SubMask : DraggableMask
 {
-    MaskTypeData associatedMaskType;
+    [SerializeField] private MaskTypeData associatedMaskType;
     public MaskTypeData MaskType => associatedMaskType;
     public void ChangeMask(MaskTypeData _newMask)
     {

@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private BaseValueInt healthValue = new BaseValueInt(100);
     [Header("UI")]
     [SerializeField] private Image imgHealthBar;
+    [Header("Feedback")]
+    [SerializeField] private FeedbackEventData e_correct;
+    [SerializeField] private FeedbackEventData e_wrong;
 
     private void Awake()
     {
@@ -28,9 +31,11 @@ public class GameManager : MonoBehaviour
     public void CorrectMask()
     {
         Debug.Log("NICE!");
+        e_correct?.InvokeEvent();
     }
     public void WrongMask()
     {
         DeductHealth(10);
+        e_wrong?.InvokeEvent();
     }
 }
