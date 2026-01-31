@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
 {
+    [SerializeField] private Animator animator;
     [SerializeField] private MaskTypeData maskType;
     [SerializeField] private SubMask maskEquipped;
     [SerializeField] private SpriteRenderer sprMask;
@@ -16,19 +17,28 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
 
     private void Update()
     {
-
         switch (enemyState)
         {
             case EnemyState.MOVE:
-                if (Vector3.Distance(posMove, transform.position) > 1f)
+                if (Vector3.Distance(posMove, transform.position) > 2f)
+                {
                     transform.position += (posMove - Vector3.right * transform.position.x).normalized * moveSpeed * Time.deltaTime;
-              
-                    break;
-            case EnemyState.DONE:
-                if(Vector3.Distance(posDone,transform.position) > 1f)
-                    transform.position += (posDone - transform.position).normalized * moveSpeed * Time.deltaTime;
+                    animator.SetBool("Move",true);
+                }
                 else
                 {
+                    animator.SetBool("Move", false);
+                }
+                break;
+            case EnemyState.DONE:
+                if(Vector3.Distance(posDone,transform.position) > 2f)
+                {
+                    transform.position += (posDone - transform.position).normalized * moveSpeed * Time.deltaTime;
+                    animator.SetBool("Move", true);
+                }
+                else
+                {
+                    animator.SetBool("Move", false);
                     gameObject.SetActive(false);
                 }
                 break;
