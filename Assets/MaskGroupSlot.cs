@@ -8,7 +8,8 @@ public class MaskGroupSlot : MonoBehaviour
     [SerializeField] bool isDrawerSlot;
     public bool IsDrawer => isDrawerSlot;
 
-    private MaskGroupData currentlyEquippedMaskGrpData;
+    private MaskGroup currentlyEquippedMaskGrp;
+    public MaskGroup CurrentlyEquippedMaskGrp => currentlyEquippedMaskGrp;
     [SerializeField] SubMask SubMaskA;
     [SerializeField] SubMask SubMaskB;
     RectTransform rectTransform;
@@ -20,13 +21,14 @@ public class MaskGroupSlot : MonoBehaviour
     private void Start()
     {
         SwapMaskDataGrp(null);
+        currentlyEquippedMaskGrp = GetComponentInChildren<MaskGroup>();
     }
-    public void SwapMaskDataGrp(MaskGroupData _newMaskGrpData)
+    public void SwapMaskDataGrp(MaskGroup _newMaskGrp)
     {
         if(!isDrawerSlot)
         {
-            currentlyEquippedMaskGrpData = _newMaskGrpData;
-            if (_newMaskGrpData == null)
+            currentlyEquippedMaskGrp = _newMaskGrp;
+            if (currentlyEquippedMaskGrp==null || _newMaskGrp.MaskGroupData == null)
             {
                 SubMaskA.gameObject.SetActive(false);
                 SubMaskB.gameObject.SetActive(false);
@@ -34,8 +36,9 @@ public class MaskGroupSlot : MonoBehaviour
             }
             SubMaskA.gameObject.SetActive(true);
             SubMaskB.gameObject.SetActive(true);
-            SubMaskA.ChangeMask(_newMaskGrpData.MaskA);
-            SubMaskB.ChangeMask(_newMaskGrpData.MaskB);
+            SubMaskA.ChangeMask(_newMaskGrp.MaskGroupData.MaskA);
+            SubMaskB.ChangeMask(_newMaskGrp.MaskGroupData.MaskB);
+            InteractionManager.Instance.MaskDrawer.ToggleDrawer(false);
         }
 
     }

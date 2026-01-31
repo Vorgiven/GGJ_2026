@@ -166,11 +166,11 @@ public class InteractionManager : MonoBehaviour
         }
         if (equipeedMaskGrp)
         {
-            if (currentlyHoveredGrpSlot)
+            if (currentlyHoveredGrpSlot && currentlyHoveredGrpSlot.CurrentlyEquippedMaskGrp == null)
             {
                 equipeedMaskGrp.SetMashGroupSlot(currentlyHoveredGrpSlot);
                 equipeedMaskGrp.EndDrag(0.25f, currentlyHoveredGrpSlot.RectTransform);
-                maskDrawer.ToggleDrawer(false);
+                // maskDrawer.ToggleDrawer(false);
                 currentlyHoveredGrpSlot = null;
             }
             else

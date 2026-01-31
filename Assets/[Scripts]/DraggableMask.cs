@@ -1,10 +1,12 @@
 using DG.Tweening;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DraggableMask : MonoBehaviour
 {
     [SerializeField] Image image;
+    public bool Dragged = false;
     public Image ImageComponent => image;
 
     RectTransform rectTransform;
@@ -22,12 +24,15 @@ public class DraggableMask : MonoBehaviour
 
     public virtual void BeginDrag()
     {
+        Dragged = true;
+        transform.SetAsFirstSibling();
         image.raycastTarget = false;
         KillTween();
     }
 
     public void EndDrag(float duration, RectTransform newParent = null)
     {
+    
         KillTween();
         image.raycastTarget = true;
 
@@ -39,7 +44,7 @@ public class DraggableMask : MonoBehaviour
         // Always return to visual center
         activeTween = rectTransform
             .DOAnchorPos(Vector2.zero, duration)
-            .SetEase(Ease.OutQuad);
+            .SetEase(Ease.OutQuad).OnComplete(() => { Dragged = false; });
     }
 
     public void FollowCursor(Vector2 parentLocalPos)
