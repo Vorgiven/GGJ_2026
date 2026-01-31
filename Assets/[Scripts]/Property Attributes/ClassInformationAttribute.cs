@@ -8,10 +8,14 @@ public class ClassInformationAttribute : Attribute
 {
     public readonly string title;
     public readonly string description;
+    public readonly int titleFontSize = 24;
+    public readonly int descriptionFontSize = 12;
 
-    public ClassInformationAttribute(string title, string description)
+    public ClassInformationAttribute(string title, string description, int titleFontSize=24, int descriptionFontSize=12)
     {
         this.title = title;
         this.description = description;
+        this.titleFontSize = titleFontSize;
+        this.descriptionFontSize = descriptionFontSize;
     }
 }

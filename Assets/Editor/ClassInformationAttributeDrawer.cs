@@ -15,13 +15,13 @@ public class ClassInformationDrawer : Editor
 
         GUIStyle guiStyleTitle = new GUIStyle();
         guiStyleTitle.alignment = TextAnchor.MiddleCenter;
-        guiStyleTitle.fontSize = 24;
+        guiStyleTitle.fontSize = attribute.titleFontSize;
         guiStyleTitle.fontStyle = FontStyle.Bold;
         guiStyleTitle.normal.textColor = Color.red; 
 
         GUIStyle guiStyleDescription = new GUIStyle();
         guiStyleDescription.alignment = TextAnchor.MiddleCenter;
-        guiStyleDescription.fontSize = 12;
+        guiStyleDescription.fontSize = attribute.descriptionFontSize;
         guiStyleDescription.fontStyle = FontStyle.Italic;
         guiStyleDescription.normal.textColor = Color.white;
 
