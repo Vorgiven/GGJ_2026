@@ -17,8 +17,8 @@ MonoBehaviour:
   audioType: {fileID: 11400000, guid: 57a84232237b6f54f820a299f09a73fd, type: 2}
   enableRandomPitch: 1
   minPitch: 1
-  maxPitch: 1.1
+  maxPitch: 1.5
   audios:
-  - clip: {fileID: 8300000, guid: 6235e57fa8f988047a7d565470adef3f, type: 3}
+  - clip: {fileID: 8300000, guid: 01635700dcb8dfe4c8c1b51400cd8f59, type: 3}
     volume: 1
   effects: []
