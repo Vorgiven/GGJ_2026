@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &128436606 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4722434460501825145, guid: d4f3bd1c331d816479cdd1aadb0ed6bb, type: 3}
-  m_PrefabInstance: {fileID: 1044259700115572988}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92c7d8b1f8793b64c985c3d4cf8c6291, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &426601560
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,10 +561,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207d108db9d58614097b2a14d9b18f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   maskType: {fileID: 11400000, guid: e7443f59d15a9fb40984984084f1be26, type: 2}
   maskEquipped: {fileID: 0}
+  sprMask: {fileID: 0}
   moveSpeed: 2
-  testMask: {fileID: 128436606}
 --- !u!70 &2112285613
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -662,6 +652,10 @@ PrefabInstance:
     - target: {fileID: 954568109017744656, guid: d4f3bd1c331d816479cdd1aadb0ed6bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316889435963634758, guid: d4f3bd1c331d816479cdd1aadb0ed6bb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3753458785124387586, guid: d4f3bd1c331d816479cdd1aadb0ed6bb, type: 3}
       propertyPath: m_AnchorMax.y
@@ -751,10 +745,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7854206565583980319, guid: d4f3bd1c331d816479cdd1aadb0ed6bb, type: 3}
-      propertyPath: interactionManager
-      value: 
-      objectReference: {fileID: 1681630759}
     - target: {fileID: 8035652886354809089, guid: d4f3bd1c331d816479cdd1aadb0ed6bb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

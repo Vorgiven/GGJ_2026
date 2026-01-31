@@ -1,28 +1,27 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MaskDrawer : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
+public class MaskDrawer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     RectTransform rectTransform;
     Tween DrawerTween;
+
+    // These define the “open” and “closed” positions in local space
+    [SerializeField] float closedY = -400f;
+    [SerializeField] float openY = 0f;
+
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
     }
+
     void Start()
     {
-        rectTransform.position = new Vector2(150, -400);
+        // Use anchoredPosition instead of world position
+        rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, closedY);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void ToggleDrawer(bool toggle)
     {
         if (DrawerTween != null && DrawerTween.IsActive())
@@ -30,33 +29,23 @@ public class MaskDrawer : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
             DrawerTween.Kill();
             DrawerTween = null;
         }
-           
-        if (toggle)
-        {
-            DrawerTween = rectTransform.DOAnchorPosY(0, 0.2f).SetEase(Ease.InOutSine);
-        }
-        else
-        {
-            DrawerTween = rectTransform.DOAnchorPosY(-400, 0.2f).SetEase(Ease.InOutSine);
-        }
+
+        float targetY = toggle ? openY : closedY;
+
+        DrawerTween = rectTransform
+            .DOAnchorPosY(targetY, 0.2f)
+            .SetEase(Ease.InOutSine);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-
-        if(InteractionManager.Instance.CurrentlyDraggingMask == null)
-        {
+        if (InteractionManager.Instance.CurrentlyDraggingMask == null)
             ToggleDrawer(true);
-        }
-        
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (InteractionManager.Instance.CurrentlyDraggingMask is not MaskGroup)
-        {
             ToggleDrawer(false);
-        }
-       
     }
 }
