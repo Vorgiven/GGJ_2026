@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
 
     private Vector3 posMove= new Vector3(-3, 0, 0);
     private Vector3 posDone = new Vector3(-6,6,0);
-
+    RaycastHit2D hit2d;
     private void Start()
     {
         //Initialize(maskTypeData);
@@ -33,11 +33,39 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
                 if (transform.position.x > posMove.x)
                 {
                     transform.position += (posMove - Vector3.right * transform.position.x).normalized * moveSpeed * Time.deltaTime;
+                    hit2d = Physics2D.Raycast(transform.position + Vector3.left * 1.1f, Vector3.left, 0.2f);
+                    if (hit2d)
+                    {
+                        Enemy enemyOther = hit2d.collider.GetComponent<Enemy>();
+                        if (enemyOther != null)
+                        {
+                            if(transform.position.x > 8.5f)
+                            {
+                                ChangeState(EnemyState.PAUSE_CHECK);
+                            }
+                            else
+                            {
+                                ChangeState(EnemyState.IDLE);
+                            }
+                        }
+                    }
                     animator.SetBool("Move",true);
                 }
                 else
                 {
                     ChangeState(EnemyState.IDLE);
+                }
+                break;
+            case EnemyState.PAUSE_CHECK:
+                animator.SetBool("Move", false);
+                hit2d = Physics2D.Raycast(transform.position + Vector3.left * 1.1f, Vector3.left, 0.2f);
+                if (hit2d)
+                {
+                    Enemy enemyOther = hit2d.collider.GetComponent<Enemy>();
+                    if (enemyOther == null)
+                    {
+                        ChangeState(EnemyState.MOVE);
+                    }
                 }
                 break;
             case EnemyState.IDLE:
@@ -120,9 +148,11 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
                 break;
             case EnemyState.ANGRY:
                 imgReaction.gameObject.SetActive(true);
+                GetComponent<CircleCollider2D>().enabled = false;
                 break;
             case EnemyState.DONE:
                 imgFrustrationTimer.gameObject.SetActive(false);
+                GetComponent<CircleCollider2D>().enabled = false;
                 break;
             default:
                 break;
@@ -139,6 +169,7 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
 public enum EnemyState
 {
     MOVE,
+    PAUSE_CHECK,
     IDLE,
     ANGRY,
     DONE,

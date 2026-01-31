@@ -9,6 +9,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private Vector3 spawnPosition;
     [SerializeField] private float spawnYThreshold = 5;
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
+    [SerializeField] public List<Transform> stopPoints = new List<Transform>();
     [SerializeField] private List<WaveInfo> waveInfos = new List<WaveInfo>();
     private int currentWaveIndex = 0;
     private bool atMaxWave = false;
@@ -19,6 +20,7 @@ public class WaveManager : MonoBehaviour
         {
             waveInfo.enemyPrefeb = enemyPrefeb;
             waveInfo.spawnPosition = spawnPosition;
+            waveInfo.stopPoints = stopPoints;
             waveInfo.spawnYThreshold = spawnYThreshold;
             waveInfo.spawnPoints = spawnPoints;
             waveInfo.posMove = posMove.position;
@@ -75,6 +77,7 @@ public class WaveInfo
     [HideInInspector] public Vector3 spawnPosition;
     [HideInInspector] public float spawnYThreshold = 5;
     [HideInInspector] public List<Transform> spawnPoints = new List<Transform>();
+    [HideInInspector] public List<Transform> stopPoints = new List<Transform>();
     [HideInInspector] public Vector3 posMove = new Vector3(-3, 0, 0);
     [HideInInspector] public Vector3 posDone = new Vector3(-6, 6, 0);
     public void StartWave()
@@ -97,12 +100,12 @@ public class WaveInfo
     private Enemy SpawnEnemy()
     {
         // Spawn enemy at random
-        int spawnPointIndex = Random.Range(0, spawnPoints.Count);
+        int stopPointIndex = Random.Range(0, stopPoints.Count);
         int maskTypeIndex = Random.Range(0, maskTypes.Count);
-
+        
         Enemy enemySpawn = GameObject.Instantiate(enemyPrefeb);
         enemySpawn.transform.position = new Vector3(spawnPosition.x
-            , spawnPosition.y + Random.Range(-spawnYThreshold, spawnYThreshold) // randomize Y
+            , stopPoints[stopPointIndex].position.y // randomize Y
             , spawnPosition.z);
 
         enemySpawn.Initialize(maskTypes[maskTypeIndex]);
