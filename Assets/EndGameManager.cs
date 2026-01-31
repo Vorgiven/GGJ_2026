@@ -6,22 +6,26 @@ using UnityEngine.UI;
 
 public class EndGameManager : MonoBehaviour
 {
+    [Header("Reference to place manually")]
+    [SerializeField] GameManager gameManager;
+
+    [Header("Auto References")]
     [SerializeField] Canvas EndGameCanvas;
     [SerializeField] Image TargetImage;
     [SerializeField] VideoData endGameVideoData;
-    [SerializeField] FeedbackEventData endGameSFX;
-    [SerializeField] FeedbackEventData Drumroll;
-    [SerializeField] FeedbackEventData Show1;
-    [SerializeField] FeedbackEventData Show2;
-
-    [SerializeField] GameManager gameManager;
-    [Header("References")]
     [SerializeField] CanvasGroup scoreGrp;
     [SerializeField] TMP_Text score;
     [SerializeField] CanvasGroup comboGrp;
     [SerializeField] TMP_Text combo;
     [SerializeField] CanvasGroup mainMenuBtn;
     [SerializeField] AudioSource musicPlayer;
+
+    [Header("Feedback")]
+    [SerializeField] FeedbackEventData endGameSFX;
+    [SerializeField] FeedbackEventData Drumroll;
+    [SerializeField] FeedbackEventData Show1;
+    [SerializeField] FeedbackEventData Show2;
+
 
     bool gameHasEnded;
     private void Start()
@@ -32,10 +36,10 @@ public class EndGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && !gameHasEnded)
-        {
-            ToggleEndGame(true);
-        }
+        //if(Input.GetKeyDown(KeyCode.Space) && !gameHasEnded)
+        //{
+        //    ToggleEndGame(true);
+        //}
     }
     public void ToggleEndGame(bool toggle)
     {
@@ -86,5 +90,17 @@ public class EndGameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Main menu");
+    }
+    void OnGameEnd()
+    {
+        ToggleEndGame(true);
+    }
+    private void OnEnable()
+    {
+        GameManager.OnGameEnd += OnGameEnd;
+    }
+    private void OnDisable()
+    {
+        GameManager.OnGameEnd -= OnGameEnd;
     }
 }
