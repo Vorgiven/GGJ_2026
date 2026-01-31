@@ -8,8 +8,8 @@ public class ClassInformationAttribute : Attribute
 {
     public readonly string title;
     public readonly string description;
-    public readonly int titleFontSize = 24;
-    public readonly int descriptionFontSize = 12;
+    public readonly int titleFontSize;
+    public readonly int descriptionFontSize;
 
     public ClassInformationAttribute(string title, string description, int titleFontSize=24, int descriptionFontSize=12)
     {

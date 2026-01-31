@@ -13,21 +13,21 @@ public class ClassInformationDrawer : Editor
         var targetType = target.GetType();
         var attribute = (ClassInformationAttribute)Attribute.GetCustomAttribute(targetType, typeof(ClassInformationAttribute));
 
-        GUIStyle guiStyleTitle = new GUIStyle();
-        guiStyleTitle.alignment = TextAnchor.MiddleCenter;
-        guiStyleTitle.fontSize = attribute.titleFontSize;
-        guiStyleTitle.fontStyle = FontStyle.Bold;
-        guiStyleTitle.normal.textColor = Color.red; 
-
-        GUIStyle guiStyleDescription = new GUIStyle();
-        guiStyleDescription.alignment = TextAnchor.MiddleCenter;
-        guiStyleDescription.fontSize = attribute.descriptionFontSize;
-        guiStyleDescription.fontStyle = FontStyle.Italic;
-        guiStyleDescription.normal.textColor = Color.white;
-
 
         if (attribute != null)
         {
+            GUIStyle guiStyleTitle = new GUIStyle();
+            guiStyleTitle.alignment = TextAnchor.MiddleCenter;
+            guiStyleTitle.fontSize = attribute.titleFontSize;
+            guiStyleTitle.fontStyle = FontStyle.Bold;
+            guiStyleTitle.normal.textColor = Color.red;
+
+            GUIStyle guiStyleDescription = new GUIStyle();
+            guiStyleDescription.alignment = TextAnchor.MiddleCenter;
+            guiStyleDescription.fontSize = attribute.descriptionFontSize;
+            guiStyleDescription.fontStyle = FontStyle.Italic;
+            guiStyleDescription.normal.textColor = Color.white;
+
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField(attribute.title, guiStyleTitle);
             EditorGUILayout.Space(5);

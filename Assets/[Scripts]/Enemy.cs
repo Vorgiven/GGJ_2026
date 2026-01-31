@@ -28,10 +28,15 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
             case EnemyState.MOVE:
                 if (Vector3.Distance(posMove, transform.position) > 1f)
                     transform.position += (posMove - Vector3.right * transform.position.x).normalized * moveSpeed * Time.deltaTime;
-                break;
+              
+                    break;
             case EnemyState.DONE:
                 if(Vector3.Distance(posDone,transform.position) > 1f)
                     transform.position += (posDone - transform.position).normalized * moveSpeed * Time.deltaTime;
+                else
+                {
+                    gameObject.SetActive(false);
+                }
                 break;
             default:
                 break;
