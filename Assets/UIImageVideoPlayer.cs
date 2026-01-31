@@ -33,12 +33,13 @@ public class UIImageVideoPlayer : MonoBehaviour
     {
         targetImage = _newImage;
     }
-    public void Play(VideoData videoData, System.Action OnVideoEndFunction = null)
+    public void Play(VideoData videoData, bool timeScale=true, System.Action OnVideoEndFunction = null)
     {
-        if(!targetImage.gameObject.activeSelf)
+        if (!targetImage.gameObject.activeSelf)
         {
             targetImage.gameObject.SetActive(true);
         }
+
         if (videoData == null || videoData.Frames.Count == 0)
         {
             Debug.LogWarning("UIImageVideoPlayer: VideoData is null or empty.");
@@ -49,8 +50,10 @@ public class UIImageVideoPlayer : MonoBehaviour
 
         currentVideo = videoData;
         currentFrame = 0;
-        playRoutine = StartCoroutine(PlayRoutine(OnVideoEndFunction));
+
+        playRoutine = StartCoroutine(PlayRoutine(timeScale,OnVideoEndFunction));
     }
+
 
     public void Stop()
     {
@@ -64,7 +67,7 @@ public class UIImageVideoPlayer : MonoBehaviour
         currentFrame = 0;
     }
 
-    private IEnumerator PlayRoutine(System.Action OnVidEnd)
+    private IEnumerator PlayRoutine(bool _usesTimeScale, System.Action OnVidEnd)
     {
         float frameTime = 1f / frameRate;
 
@@ -88,7 +91,10 @@ public class UIImageVideoPlayer : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(frameTime);
+            if (_usesTimeScale)
+                yield return new WaitForSeconds(frameTime);
+            else
+                yield return new WaitForSecondsRealtime(frameTime);
         }
     }
 }

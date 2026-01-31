@@ -37,7 +37,7 @@ public class InstructionMenuManager : MonoBehaviour
             InstructionList[0].anchoredPosition = new Vector2(750, InstructionList[0].anchoredPosition.y);
             instructionGrp.interactable = false;
             instructionGrp.alpha = 0;
-            UIImageVideoPlayer.Instance.Play(CLoseCUrtain, () => {
+            UIImageVideoPlayer.Instance.Play(CLoseCUrtain,true, () => {
                 instructionGrp.interactable = true;
                 instructionGrp.DOFade(1, .03f).SetEase(Ease.InSine); });
             e_curtainClose?.InvokeEvent();
@@ -46,7 +46,7 @@ public class InstructionMenuManager : MonoBehaviour
         {
             instructionGrp.interactable = false;
             instructionGrp.DOFade(0, .03f).SetEase(Ease.InSine);
-            UIImageVideoPlayer.Instance.Play(OpenCurtain, () => { menuManager.ForceCloseMenu(instruictionMenu); });
+            UIImageVideoPlayer.Instance.Play(OpenCurtain,true, () => { menuManager.ForceCloseMenu(instruictionMenu); });
             e_curtainOpen?.InvokeEvent();
         }
     }

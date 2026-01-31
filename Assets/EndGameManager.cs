@@ -1,6 +1,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EndGameManager : MonoBehaviour
@@ -20,6 +21,7 @@ public class EndGameManager : MonoBehaviour
     [SerializeField] CanvasGroup comboGrp;
     [SerializeField] TMP_Text combo;
     [SerializeField] CanvasGroup mainMenuBtn;
+    [SerializeField] AudioSource musicPlayer;
 
     bool gameHasEnded;
     private void Start()
@@ -45,34 +47,44 @@ public class EndGameManager : MonoBehaviour
 
         if (toggle)
         {
-            Time.timeScale = 0;
-            score.text = gameManager.Score.ToString();
-            combo.text = gameManager.HightestCombo.ToString();
-            endGameSFX?.InvokeEvent();
-            UIImageVideoPlayer.Instance.SetImageTarget(TargetImage);
-            UIImageVideoPlayer.Instance.Play(endGameVideoData, ShowGameStats);
-            DOVirtual.DelayedCall(1.35f+.3f, () => { Drumroll?.InvokeEvent();
-                DOVirtual.DelayedCall(1, () =>
-                {
-                    Show1?.InvokeEvent();
-                    scoreGrp.alpha = 1;
-                    DOVirtual.DelayedCall(0.5f, () =>
+            musicPlayer.DOPitch(0, .25f).SetEase(Ease.InCubic).SetUpdate(true).OnComplete(() => {
+                Time.timeScale = 0;
+                score.text = gameManager.Score.ToString();
+                combo.text = gameManager.HightestCombo.ToString();
+                endGameSFX?.InvokeEvent();
+                UIImageVideoPlayer.Instance.SetImageTarget(TargetImage);
+                UIImageVideoPlayer.Instance.Play(endGameVideoData, false);
+                DOVirtual.DelayedCall(1.35f + .3f, () => {
+                    Drumroll?.InvokeEvent();
+                    DOVirtual.DelayedCall(1, () =>
                     {
-                        comboGrp.alpha = 1;
-                        Show2?.InvokeEvent();
-                        DOVirtual.DelayedCall(1.05f, () =>
+                        Show1?.InvokeEvent();
+                        scoreGrp.alpha = 1;
+                        DOVirtual.DelayedCall(0.5f, () =>
                         {
-                            mainMenuBtn.alpha = 1;
+                            comboGrp.alpha = 1;
+                            Show2?.InvokeEvent();
+                            DOVirtual.DelayedCall(1.05f, () =>
+                            {
+                                mainMenuBtn.alpha = 1;
 
+                            });
                         });
                     });
                 });
             });
+            
+            
+        }
+        else
+        {
+            Time.timeScale = 1;
         }
 
     }
-    void ShowGameStats()
+    public void GoToMainMenu()
     {
-
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Main menu");
     }
 }

@@ -38,7 +38,7 @@ public class CreditsMenu : MonoBehaviour
                 });
             });
             
-            UIImageVideoPlayer.Instance.Play(ShowCreditsVideoData, () => { buttonCanvasGrp.interactable = true; 
+            UIImageVideoPlayer.Instance.Play(ShowCreditsVideoData,true, () => { buttonCanvasGrp.interactable = true; 
                 buttonCanvasGrp.DOFade(1, .15f).SetEase(Ease.InCubic); });
         }
         else
@@ -51,7 +51,7 @@ public class CreditsMenu : MonoBehaviour
             buttonCanvasGrp.interactable = false;
             creditsText.DOAnchorPosY(770, 0.3667f).SetEase(Ease.OutSine);
             buttonCanvasGrp.DOFade(0, .05f).SetEase(Ease.InCubic);
-            UIImageVideoPlayer.Instance.Play(HideCreditsVideoData, () => { menuManger.ForceCloseMenu(CreditsGrp); });
+            UIImageVideoPlayer.Instance.Play(HideCreditsVideoData, true,() => { menuManger.ForceCloseMenu(CreditsGrp); });
         }
     }
 }

@@ -720,7 +720,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 248209796}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2060939933}
+        m_TargetAssemblyTypeName: EndGameManager, Assembly-CSharp
+        m_MethodName: GoToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &248209796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3104,6 +3116,7 @@ MonoBehaviour:
   comboGrp: {fileID: 427367395}
   combo: {fileID: 1339467951}
   mainMenuBtn: {fileID: 248209798}
+  musicPlayer: {fileID: 1736768443}
 --- !u!4 &2060939934
 Transform:
   m_ObjectHideFlags: 0
