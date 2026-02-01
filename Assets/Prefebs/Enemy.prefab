@@ -512,7 +512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3900667302329587400}
   - component: {fileID: 4673115529394679789}
-  - component: {fileID: 1526125373087257544}
+  - component: {fileID: 1182527745777742532}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -565,8 +565,8 @@ MonoBehaviour:
   imgReaction: {fileID: 380688550738933175}
   imgFrustrationTimer: {fileID: 2864761465316389823}
   posDone: {x: -6, y: 3.5, z: 0}
---- !u!58 &1526125373087257544
-CircleCollider2D:
+--- !u!61 &1182527745777742532
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -594,12 +594,22 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.39}
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 1
+  m_Size: {x: 1, y: 3}
+  m_EdgeRadius: 0
 --- !u!1 &7860300970444035910
 GameObject:
   m_ObjectHideFlags: 0

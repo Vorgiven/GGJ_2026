@@ -42,13 +42,14 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
                         Enemy enemyOther = hit2d.collider.GetComponent<Enemy>();
                         if (enemyOther != null)
                         {
-                            if(transform.position.x > 8.5f)
+                            if(transform.position.x > 8f)
                             {
                                 ChangeState(EnemyState.PAUSE_CHECK);
                             }
                             else
                             {
                                 ChangeState(EnemyState.IDLE);
+                                Debug.Log("Enemy found");
                             }
                         }
                     }
@@ -65,10 +66,14 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
                 if (hit2d)
                 {
                     Enemy enemyOther = hit2d.collider.GetComponent<Enemy>();
-                    if (enemyOther == null)
+                    if (enemyOther == null || enemyOther!=null && enemyOther.CompareState(EnemyState.IDLE))
                     {
                         ChangeState(EnemyState.MOVE);
                     }
+                }
+                else
+                {
+                    ChangeState(EnemyState.MOVE);
                 }
                 break;
             case EnemyState.IDLE:
@@ -80,9 +85,9 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
                 }
                 break;
             case EnemyState.ANGRY:
-                if (Vector3.Distance(new Vector3(0, -8, 0), transform.position) > 2f)
+                if (Vector3.Distance(new Vector3(0, -7, 0), transform.position) > 2f)
                 {
-                    transform.position += (new Vector3(0,-8,0) - transform.position).normalized * moveSpeed * Time.deltaTime;
+                    transform.position += (new Vector3(0,-7,0) - transform.position).normalized * moveSpeed * Time.deltaTime;
                     animator.SetBool("Move", true);
                 }
                 else
@@ -184,12 +189,12 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
                 break;
             case EnemyState.ANGRY:
                 imgReaction.gameObject.SetActive(true);
-                GetComponent<CircleCollider2D>().enabled = false;
+                GetComponent<BoxCollider2D>().enabled = false;
                 GameManager.instance.DeductHealth(5);
                 break;
             case EnemyState.DONE:
                 imgFrustrationTimer.gameObject.SetActive(false);
-                GetComponent<CircleCollider2D>().enabled = false;
+                GetComponent<BoxCollider2D>().enabled = false;
                 break;
             default:
                 break;
