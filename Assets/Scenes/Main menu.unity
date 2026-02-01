@@ -5159,8 +5159,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: The actors demand their masks!!!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c59aade4837d5546a4d73e449fe986a, type: 2}
+  m_sharedMaterial: {fileID: -8868413559731529383, guid: 7c59aade4837d5546a4d73e449fe986a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6427,8 +6427,8 @@ MonoBehaviour:
   m_text: Hover your mouse onto the HANDLE to reveal your mask drawer, more appears
     overtime
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c59aade4837d5546a4d73e449fe986a, type: 2}
+  m_sharedMaterial: {fileID: -8868413559731529383, guid: 7c59aade4837d5546a4d73e449fe986a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6608,8 +6608,8 @@ MonoBehaviour:
     The wrong mask or taking too long
     will deplete it!!! If it goes to 0, its game over!!!'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c59aade4837d5546a4d73e449fe986a, type: 2}
+  m_sharedMaterial: {fileID: -8868413559731529383, guid: 7c59aade4837d5546a4d73e449fe986a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6697,8 +6697,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 2 smaller mask will appear, these are the ones you give to the actors
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c59aade4837d5546a4d73e449fe986a, type: 2}
+  m_sharedMaterial: {fileID: -8868413559731529383, guid: 7c59aade4837d5546a4d73e449fe986a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6786,8 +6786,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: To equip a mask, drag it onto the mannequin's head
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c59aade4837d5546a4d73e449fe986a, type: 2}
+  m_sharedMaterial: {fileID: -8868413559731529383, guid: 7c59aade4837d5546a4d73e449fe986a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6875,8 +6875,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Drag and drop the appopriate mask onto the actors to score a point
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c59aade4837d5546a4d73e449fe986a, type: 2}
+  m_sharedMaterial: {fileID: -8868413559731529383, guid: 7c59aade4837d5546a4d73e449fe986a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
