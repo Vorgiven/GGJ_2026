@@ -78,8 +78,8 @@ public class WaveInfo
     [HideInInspector] public float spawnYThreshold = 5;
     [HideInInspector] public List<Transform> spawnPoints = new List<Transform>();
     [HideInInspector] public List<Transform> stopPoints = new List<Transform>();
-    [HideInInspector] public Vector3 posMove = new Vector3(-3, 0, 0);
-    [HideInInspector] public Vector3 posDone = new Vector3(-6, 6, 0);
+    public Vector3 posMove = new Vector3(-3, 0, 0);
+    public Vector3 posDone = new Vector3(-6, 6, 0);
     public void StartWave()
     {
         RandomizeTimeSpawn();

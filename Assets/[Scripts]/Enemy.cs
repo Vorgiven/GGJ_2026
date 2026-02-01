@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
     [SerializeField] private Image imgFrustrationTimer;
 
     private Vector3 posMove= new Vector3(-3, 0, 0);
-    private Vector3 posDone = new Vector3(-6,6,0);
+    [SerializeField] private Vector3 posDone = new Vector3(-6,6,0);
     RaycastHit2D hit2d;
     private void Start()
     {
@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
                 }
                 break;
             case EnemyState.DONE:
-                if(Vector3.Distance(posDone,transform.position) > 2f)
+                if(transform.position.y < posDone.y)
                 {
                     transform.position += (posDone - transform.position).normalized * moveSpeed * Time.deltaTime;
                     animator.SetBool("Move", true);

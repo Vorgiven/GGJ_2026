@@ -564,6 +564,7 @@ MonoBehaviour:
     timeElapsed: 0
   imgReaction: {fileID: 380688550738933175}
   imgFrustrationTimer: {fileID: 2864761465316389823}
+  posDone: {x: -6, y: 3.5, z: 0}
 --- !u!58 &1526125373087257544
 CircleCollider2D:
   m_ObjectHideFlags: 0
