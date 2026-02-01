@@ -28,3 +28,9 @@ MonoBehaviour:
   - maskTarget: {fileID: 11400000, guid: bba6c960d56c515499a94b5aa3b3e0bb, type: 2}
     offsetPosMask: {x: -0.04, y: 5.06, z: 0}
     scaleMask: 0.55
+  - maskTarget: {fileID: 11400000, guid: b90e4a449f2871a45beebb535500064d, type: 2}
+    offsetPosMask: {x: -0.77, y: 4.23, z: 0}
+    scaleMask: 1
+  - maskTarget: {fileID: 11400000, guid: 8ced2c33f319c3844bf0adc2c4656a62, type: 2}
+    offsetPosMask: {x: -0.77, y: 4.23, z: 0}
+    scaleMask: 1

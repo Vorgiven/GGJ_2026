@@ -19,12 +19,18 @@ MonoBehaviour:
   flipCharacter: 1
   offsetPosCharacter: {x: 0, y: 0, z: 0}
   scaleCharacter: 1.2
-  offsetPosMask: {x: 0.54, y: 5.06, z: 0}
-  scaleMask: 0.55
+  offsetPosMask: {x: -0.18, y: 5.15, z: 0}
+  scaleMask: 0.45
   spriteMaskOffsets:
   - maskTarget: {fileID: 11400000, guid: 2d92e681c58dc7d44b7d63540c769f43, type: 2}
-    offsetPosMask: {x: -0.09, y: 3.41, z: 0}
-    scaleMask: 0.73
+    offsetPosMask: {x: -0.64, y: 3.95, z: 0}
+    scaleMask: 0.7
   - maskTarget: {fileID: 11400000, guid: e7443f59d15a9fb40984984084f1be26, type: 2}
-    offsetPosMask: {x: -0.09, y: 3.41, z: 0}
-    scaleMask: 0.73
+    offsetPosMask: {x: -0.64, y: 3.95, z: 0}
+    scaleMask: 0.7
+  - maskTarget: {fileID: 11400000, guid: b90e4a449f2871a45beebb535500064d, type: 2}
+    offsetPosMask: {x: -0.72, y: 4.1, z: 0}
+    scaleMask: 0.8
+  - maskTarget: {fileID: 11400000, guid: 8ced2c33f319c3844bf0adc2c4656a62, type: 2}
+    offsetPosMask: {x: -0.72, y: 4.1, z: 0}
+    scaleMask: 0.8

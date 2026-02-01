@@ -2105,6 +2105,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: End game manager
       objectReference: {fileID: 0}
+    - target: {fileID: 3561472646722063825, guid: 0de32e44af1054e4facd17c8ed237bf7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 59e14a5a141b7da4b85760f724ef25f1, type: 2}
+    - target: {fileID: 3561472646722063825, guid: 0de32e44af1054e4facd17c8ed237bf7, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561472646722063825, guid: 0de32e44af1054e4facd17c8ed237bf7, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -3803583560895881223, guid: 59e14a5a141b7da4b85760f724ef25f1, type: 2}
+    - target: {fileID: 3561472646722063825, guid: 0de32e44af1054e4facd17c8ed237bf7, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3862935641950904081, guid: 0de32e44af1054e4facd17c8ed237bf7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c87a377bb1bfb0745bc0ab8af1623b93, type: 3}
     - target: {fileID: 4192320232081999385, guid: 0de32e44af1054e4facd17c8ed237bf7, type: 3}
       propertyPath: gameManager
       value: 
@@ -2192,6 +2212,14 @@ PrefabInstance:
     - target: {fileID: 6813156528112243976, guid: 0de32e44af1054e4facd17c8ed237bf7, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813156528112243976, guid: 0de32e44af1054e4facd17c8ed237bf7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 484.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813156528112243976, guid: 0de32e44af1054e4facd17c8ed237bf7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 130.33
       objectReference: {fileID: 0}
     - target: {fileID: 6813156528112243976, guid: 0de32e44af1054e4facd17c8ed237bf7, type: 3}
       propertyPath: m_AnchoredPosition.x
