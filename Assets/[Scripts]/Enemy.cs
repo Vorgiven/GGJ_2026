@@ -110,6 +110,7 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
     public void Initialize(MaskTypeData data)
     {
         if (data == null) return;
+        sprMask.sprite = null;
         maskTypeData = data;
         if (maskTypeData.animatorOverride != null)
             animator.runtimeAnimatorController = maskTypeData.animatorOverride;
@@ -184,6 +185,7 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
             case EnemyState.ANGRY:
                 imgReaction.gameObject.SetActive(true);
                 GetComponent<CircleCollider2D>().enabled = false;
+                GameManager.instance.DeductHealth(5);
                 break;
             case EnemyState.DONE:
                 imgFrustrationTimer.gameObject.SetActive(false);
