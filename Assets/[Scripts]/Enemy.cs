@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour, IEnumGameState<EnemyState>
                     if (hit2d)
                     {
                         Enemy enemyOther = hit2d.collider.GetComponent<Enemy>();
-                        if (enemyOther != null)
+                        if (enemyOther != null && enemyOther.gameObject.activeInHierarchy)
                         {
                             if(transform.position.x > 8f)
                             {
